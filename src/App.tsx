@@ -1,10 +1,9 @@
 import React from 'react';
+import Routes from './Routes';
 
 const App = () => {
   return (
-    <div>
-      <h1 className="text-xl underline text-blue-500">Hello, React + Typescript + Tailwind CSS</h1>
-    </div>
+    <Routes />
   );
 };
 
