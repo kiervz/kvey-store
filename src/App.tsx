@@ -1,7 +1,7 @@
 const App = () => {
   return (
     <div>
-      <h1>Hello, React + Typescript + Tailwind CSS</h1>
+      <h1 className="text-xl underline text-blue-500">Hello, React + Typescript + Tailwind CSS</h1>
     </div>
   );
 };
