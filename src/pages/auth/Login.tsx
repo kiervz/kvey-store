@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import IconGoogle from '../../assets/images/icon-google.svg';
 import IconGithub from '../../assets/images/icon-github.svg';
 import IconFB from '../../assets/images/icon-fb.svg';
 import LoginImage from '../../assets/images/bg-login.png';
+
 import '../../assets/css/blobz.min.css';
 
 const Login = () => {
@@ -37,7 +40,7 @@ const Login = () => {
           <div className='mt-8'>
             <p className='text-sm'>
               <span className='text-gray-500'>Not registered yet? </span>
-              <span className='font-bold cursor-pointer text-gray-800'>Create an Account</span>
+              <span className='font-bold cursor-pointer text-gray-800'><Link to='/register'>Create an Account</Link></span>
             </p>
           </div>
         </div>
