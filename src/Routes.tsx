@@ -4,13 +4,15 @@ import { RequireAuth } from './RequireAuth';
 
 import Login from './pages/auth/Login';
 import Dashboard from './pages/dashboard/Dashboard';
+import Landing from './pages/landing/Landing';
 
 const Routes = () => {
   return (
     <BrowserRouter>
       <CRoutes>
+        <Route path='/' element={<Landing />}/> 
         <Route 
-          path='/'
+          path='/dashboard'
           element={
             <RequireAuth>
               <Dashboard />
@@ -19,7 +21,7 @@ const Routes = () => {
         />
       
         <Route path="/login" element={
-          <RequireAuth isAuth>
+          <RequireAuth isAuthPage>
             <Login />
           </RequireAuth>
         } />
