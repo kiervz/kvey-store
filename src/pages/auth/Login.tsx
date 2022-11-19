@@ -7,6 +7,8 @@ import IconFB from '../../assets/images/icon-fb.svg';
 import LoginImage from '../../assets/images/bg-login.png';
 
 import '../../assets/css/blobz.min.css';
+import { Input } from '../../components/common/input';
+import { Button } from '../../components/common/button';
 
 const Login = () => {
   return (
@@ -16,27 +18,33 @@ const Login = () => {
           <h2 className='font-bold text-2xl'>Login</h2>
           <p className='text-sm mt-4'>Login in your account</p>
           <form className='mt-8 flex flex-col gap-4'>
-            <input className='py-2 px-3 rounded-xl border' type='text' name='email' placeholder='Email' />
-            <input className='py-2 px-3 rounded-xl border' type='password' name='password' placeholder='Password' />
-            <button className='bg-[#001829] text-white py-2 rounded-xl hover:bg-[#002540] hover:scale-105 duration-300'>Login</button>
+            <Input className='py-2 px-3 rounded-xl border' type='text' name='email' placeholder='Email' />
+            <Input className='py-2 px-3 rounded-xl border' type='password' name='password' placeholder='Password' />
+            <Button 
+              className='bg-[#001829] text-white py-2 rounded-xl hover:bg-[#002540] hover:scale-105 duration-300'
+              btnText={'Login'}
+            />
           </form>
           <div className='mt-5 mb-5 grid grid-cols-3 items-center gap-1'>
             <hr />
             <p className='text-center text-gray-500 text-sm'>OR</p>
             <hr />
           </div>
-          <button className="bg-white hover:bg-[#F4F4F4] hover:scale-105 duration-300 border py-2 w-full rounded-xl mt-3 flex justify-center items-center text-sm text-black">
-            <img src={IconGoogle} className='mr-2' />
-            Sigin with Google
-          </button>
-          <button className="bg-white hover:bg-[#F4F4F4] hover:scale-105 duration-300 border py-2 w-full rounded-xl mt-3 flex justify-center items-center text-sm text-black">
-            <img src={IconGithub} className='mr-2' />
-            Sigin with Github
-          </button>
-          <button className="bg-white hover:bg-[#F4F4F4] hover:scale-105 duration-300 border py-2 w-full rounded-xl mt-3 flex justify-center items-center text-sm text-black">
-            <img src={IconFB} className='mr-2' />
-            Sigin with Facebook
-          </button>
+          <Button 
+            className="bg-white hover:bg-[#F4F4F4] hover:scale-105 duration-300 border py-2 w-full rounded-xl mt-3 flex justify-center items-center text-sm text-black"
+            btnText={'Sigin with Google'}
+            btnIcon={<img src={IconGoogle} className='mr-2' />}
+          />
+          <Button 
+            className="bg-white hover:bg-[#F4F4F4] hover:scale-105 duration-300 border py-2 w-full rounded-xl mt-3 flex justify-center items-center text-sm text-black"
+            btnText={'Sigin with Github'}
+            btnIcon={<img src={IconGithub} className='mr-2' />}
+          />
+          <Button 
+            className="bg-white hover:bg-[#F4F4F4] hover:scale-105 duration-300 border py-2 w-full rounded-xl mt-3 flex justify-center items-center text-sm text-black" 
+            btnText={'Sigin with Facebook'}
+            btnIcon={<img src={IconFB} className='mr-2' />}
+          />
           <div className='mt-8'>
             <p className='text-sm'>
               <span className='text-gray-500'>Not registered yet? </span>
