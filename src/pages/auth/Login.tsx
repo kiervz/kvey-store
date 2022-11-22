@@ -9,18 +9,21 @@ import LoginImage from '../../assets/images/bg-login.png';
 
 import '../../assets/css/blobz.min.css';
 import { Input } from '../../components/common/input';
-import { Button } from '../../components/common/button';
+import { Button } from '../../components/common/button'; 
 
 const Login = () => {
-  const [loading, setLoading] = useState(false);
-
-  const googleLogin = () => {
-    setLoading(true);
-    axios.get('/api/v1/auth/login/google')
-      .then(({ data }) => {
-        window.location.replace(data);
-      }).catch(error => console.log(error))
-      .finally(() => setLoading(false));
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<any>(null);
+  
+  const googleLogin = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get('/api/v1/auth/login/google');
+      window.location.replace(data);
+    } catch(err: any) {
+      const error = err.response.data.message;
+      setError(error);
+    } finally { setLoading(false); }
   };
 
   return (
@@ -28,8 +31,9 @@ const Login = () => {
       <div className='bg-white flex rounded-2xl max-w-5xl shadow-lg'>
         <div className='sm:w-1/2 w-[100%] p-16'>
           <h2 className='font-bold text-2xl'>Login</h2>
-          <p className='text-sm mt-4'>Login in your account</p>
-          <form className='mt-8 flex flex-col gap-4'>
+          <p className='text-sm mt-4'>Log in your account</p>
+          { error && <p className='bg-red-200 p-2 rounded mt-4'>{ error }</p>}
+          <form className='mt-4 flex flex-col gap-4'>
             <Input className='py-2 px-3 rounded-xl border' type='text' name='email' placeholder='Email' />
             <Input className='py-2 px-3 rounded-xl border' type='password' name='password' placeholder='Password' />
             <Button 
