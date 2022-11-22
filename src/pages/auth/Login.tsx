@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from '../../config/AxiosClient';
 
 import IconGoogle from '../../assets/images/icon-google.svg';
 import IconGithub from '../../assets/images/icon-github.svg';
@@ -11,6 +12,17 @@ import { Input } from '../../components/common/input';
 import { Button } from '../../components/common/button';
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
+
+  const googleLogin = () => {
+    setLoading(true);
+    axios.get('/api/v1/auth/login/google')
+      .then(({ data }) => {
+        window.location.replace(data);
+      }).catch(error => console.log(error))
+      .finally(() => setLoading(false));
+  };
+
   return (
     <section className='bg-gray-100 min-h-screen flex items-center justify-center'>
       <div className='bg-white flex rounded-2xl max-w-5xl shadow-lg'>
@@ -30,9 +42,11 @@ const Login = () => {
             <p className='text-center text-gray-500 text-sm'>OR</p>
             <hr />
           </div>
-          <Button 
+          <Button
             className="bg-white hover:bg-[#F4F4F4] hover:scale-105 duration-300 border py-2 w-full rounded-xl mt-3 flex justify-center items-center text-sm text-black"
             btnText={'Sigin with Google'}
+            onClick={googleLogin}
+            loading={loading}
             btnIcon={<img src={IconGoogle} className='mr-2' />}
           />
           <Button 

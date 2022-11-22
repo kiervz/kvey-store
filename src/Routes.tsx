@@ -6,6 +6,7 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Dashboard from './pages/dashboard/Dashboard';
 import Landing from './pages/landing/Landing';
+import AuthGoogleCallback from './pages/auth/social/AuthGoogleCallback';
 
 const Routes = () => {
   return (
@@ -31,6 +32,8 @@ const Routes = () => {
             <Register />
           </RequireAuth>
         } />
+
+        <Route path="/auth/google/callback" element={<AuthGoogleCallback />} />
       </CRoutes>
     </BrowserRouter>
   );

@@ -8,11 +8,11 @@ interface IRequireAuth {
 }
 
 export const RequireAuth: React.FC<IRequireAuth> = ({ redirectPath = '/login', children, isAuthPage}) => {
-  const user = '';
+  const user = localStorage.getItem('token');
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user.length === 0) {
+    if (user === null) {
       return navigate(redirectPath);
     } else if (isAuthPage) {
       return navigate('/');
