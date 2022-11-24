@@ -12,18 +12,30 @@ import { Input } from '../../components/common/input';
 import { Button } from '../../components/common/button'; 
 
 const Login = () => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading1, setLoading1] = useState<boolean>(false);
+  const [loading2, setLoading2] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
   
   const googleLogin = async () => {
     try {
-      setLoading(true);
+      setLoading1(true);
       const { data } = await axios.get('/api/v1/auth/login/google');
       window.location.replace(data);
     } catch(err: any) {
       const error = err.response.data.message;
       setError(error);
-    } finally { setLoading(false); }
+    } finally { setLoading1(false); }
+  };
+
+  const githubLogin = async () => {
+    try {
+      setLoading2(true);
+      const { data } = await axios.get('/api/v1/auth/login/github');
+      window.location.replace(data);
+    } catch(err: any) {
+      const error = err.response.data.message;
+      setError(error);
+    } finally { setLoading2(false); }
   };
 
   return (
@@ -50,11 +62,13 @@ const Login = () => {
             className="bg-white hover:bg-[#F4F4F4] hover:scale-105 duration-300 border py-2 w-full rounded-xl mt-3 flex justify-center items-center text-sm text-black"
             btnText={'Sigin with Google'}
             onClick={googleLogin}
-            loading={loading}
+            loading={loading1}
             btnIcon={<img src={IconGoogle} className='mr-2' />}
           />
           <Button 
             className="bg-white hover:bg-[#F4F4F4] hover:scale-105 duration-300 border py-2 w-full rounded-xl mt-3 flex justify-center items-center text-sm text-black"
+            onClick={githubLogin}
+            loading={loading2}
             btnText={'Sigin with Github'}
             btnIcon={<img src={IconGithub} className='mr-2' />}
           />
