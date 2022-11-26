@@ -7,8 +7,7 @@ import IconGithub from '../../assets/images/icon-github.svg';
 import IconFB from '../../assets/images/icon-fb.svg';
 import LoginImage from '../../assets/images/bg-login.png';
 
-import { Input } from '../../components/common';
-import { Button } from '../../components/common'; 
+import { Input, Button } from '../../components/common';
 import { userAction } from '../../redux/features/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
