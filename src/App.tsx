@@ -5,12 +5,12 @@ import { roles } from './constants';
 
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
-import HomePage from './pages/home-page/HomePage';
 import Dashboard from './pages/admin/dashboard/Dashboard';
 import Home from './pages/customer/home/Home';
 import Missing from './pages/missing/Missing';
 import AuthGoogleCallback from './pages/auth/social/AuthGoogleCallback';
 import AuthGithubCallback from './pages/auth/social/AuthGithubCallback';
+import Landing from './pages/landing/Landing';
 
 const App = () => {
   return (
@@ -20,10 +20,10 @@ const App = () => {
         <Route element={<AuthPages />}>
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path="/auth/google/callback" element={<AuthGoogleCallback />} />
+          <Route path="/auth/github/callback" element={<AuthGithubCallback />} />
         </Route>
-        <Route path='/' element={<HomePage />} />
-        <Route path="/auth/google/callback" element={<AuthGoogleCallback />} />
-        <Route path="/auth/github/callback" element={<AuthGithubCallback />} />
+        <Route path='/' element={<Landing />} />
 
         {/* Protect these Admin routes  */}
         <Route element={<RequireAuth allowedRoles={[roles.ADMIN]}/>}>
