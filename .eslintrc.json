@@ -37,6 +37,13 @@
             "always"
         ],
         "@typescript-eslint/no-explicit-any": "off",
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/strict-boolean-expressions": [
+            2,
+            {
+                "allowString" : false,
+                "allowNumber" : false
+            }
+        ]
     }
 }

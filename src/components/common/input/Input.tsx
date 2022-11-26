@@ -12,6 +12,7 @@ interface IInput {
   maxLength?: number | undefined;
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
   onKeyPress?: React.KeyboardEventHandler<HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 
 export const Input: React.FC<IInput> = ({ 
@@ -25,7 +26,8 @@ export const Input: React.FC<IInput> = ({
   checked, 
   pattern, 
   onChange,
-  onKeyPress 
+  onKeyPress,
+  onBlur
 }) => {
   return (
     <input
@@ -40,6 +42,7 @@ export const Input: React.FC<IInput> = ({
       checked={checked}
       onChange={onChange}
       onKeyPress={onKeyPress}
+      onBlur={onBlur}
     />
   );
 };
