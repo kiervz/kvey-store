@@ -7,11 +7,17 @@ import IconGithub from '../../assets/images/icon-github.svg';
 import IconFB from '../../assets/images/icon-fb.svg';
 import LoginImage from '../../assets/images/bg-login.png';
 
-import '../../assets/css/blobz.min.css';
-import { Input } from '../../components/common/input';
-import { Button } from '../../components/common/button'; 
+import { Input } from '../../components/common';
+import { Button } from '../../components/common'; 
+import { userAction } from '../../redux/features/user/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading1, setLoading1] = useState<boolean>(false);
   const [loading2, setLoading2] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
@@ -38,6 +44,26 @@ const Login = () => {
     } finally { setLoading2(false); }
   };
 
+  const onFormSubmit = (e: React.FormEvent<EventTarget>) => {
+    e.preventDefault();
+
+    if (email.trim().length === 0 || password.trim().length === 0) {
+      return setError('Please enter email and password.');
+    }
+
+    axios.post('/api/v1/auth/login', {
+      email,
+      password
+    }).then(({ data }) => {
+      dispatch(userAction.setUser(data.response));
+      if (data.response.user.roles.includes(1)) {
+        navigate('/dashboard');
+      } else if (data.response.user.roles.includes(2)) {
+        navigate('/home');
+      }
+    }).catch(error => console.log(error));  
+  };
+  
   return (
     <section className='bg-gray-100 min-h-screen flex items-center justify-center'>
       <div className='bg-white flex rounded-2xl max-w-5xl shadow-lg'>
@@ -45,10 +71,25 @@ const Login = () => {
           <h2 className='font-bold text-2xl'>Login</h2>
           <p className='text-sm mt-4'>Log in your account</p>
           { error && <p className='bg-red-200 p-2 rounded mt-4'>{ error }</p>}
-          <form className='mt-4 flex flex-col gap-4'>
-            <Input className='py-2 px-3 rounded-xl border' type='text' name='email' placeholder='Email' />
-            <Input className='py-2 px-3 rounded-xl border' type='password' name='password' placeholder='Password' />
+          <form className='mt-4 flex flex-col gap-4' onSubmit={onFormSubmit} >
+            <Input 
+              className='py-2 px-3 rounded-xl border' 
+              type='text' 
+              name='email' 
+              placeholder='Email' 
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <Input 
+              className='py-2 px-3 rounded-xl border' 
+              type='password' 
+              name='password' 
+              placeholder='Password' 
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
             <Button 
+              type='submit'
               className='bg-[#001829] text-white py-2 rounded-xl hover:bg-[#002540] hover:scale-105 duration-300'
               btnText={'Login'}
             />
