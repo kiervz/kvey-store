@@ -7,9 +7,9 @@ export const AuthPages = () => {
   const location = useLocation();
 
   return (
-    !userState?.token 
+    userState?.token != null
       ? <Outlet /> 
-      : userState?.data?.roles.includes(1)
+      : userState != null && Boolean(userState?.data?.roles.includes(1))
         ? <Navigate to="/dashboard" state={{ from: location }} replace /> 
         : <Navigate to="/home" state={{ from: location }} replace />
   );

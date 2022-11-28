@@ -55,7 +55,7 @@ const Login = () => {
 
   const facebookLogin = () => {
     console.log('under construction facebook auth');
-  }
+  };
 
   const loginHandler = async (values: any, setSubmitting: (isSubmitting: boolean) => void) => {
     try {
@@ -63,9 +63,9 @@ const Login = () => {
 
       dispatch(userAction.setUser(data.response));
       
-      if (data.response.user.roles.includes(1)) {
+      if (data != null && Boolean(data.response.user.roles.includes(1))) {
         navigate('/dashboard');
-      } else if (data.response.user.roles.includes(2)) {
+      } else if (data != null && Boolean(data.response.user.roles.includes(2))) {
         navigate('/home');
       }
     } catch(err: any) {
@@ -84,10 +84,10 @@ const Login = () => {
         <div className='sm:w-1/2 w-[100%] p-16'>
           <h2 className='font-bold text-2xl'>Login</h2>
           <p className='text-sm mt-4'>Log in your account</p>
-          { error && <p className='bg-red-200 p-2 rounded mt-4'>{ error }</p>}
+          { error != null && <p className='bg-red-200 p-2 rounded mt-4'>{ error }</p>}
           <form className='mt-4 flex flex-col gap-4' onSubmit={handleSubmit} >
             <Input 
-              className={`py-2 px-3 rounded-xl border ${errors.email ? 'border-2 border-red-600': ''}`}
+              className={`py-2 px-3 rounded-xl border ${errors.email != null ? 'border-2 border-red-600': '1'}`}
               type='text' 
               name='email' 
               placeholder='Email' 
@@ -96,7 +96,7 @@ const Login = () => {
               onBlur={handleBlur}
             />
             <Input 
-              className={`py-2 px-3 rounded-xl border ${errors.password ? 'border-2 border-red-600': ''}`}
+              className={`py-2 px-3 rounded-xl border ${errors.password != null ? 'border-2 border-red-600': '1'}`}
               type='password' 
               name='password' 
               placeholder='Password' 
@@ -108,7 +108,7 @@ const Login = () => {
               type='submit'
               className='bg-[#020a0f] text-white py-2 rounded-xl enabled:hover:bg-[#212529] disabled:bg-[#6F7275] duration-300'
               btnText={'Login'}
-              isDisabled={isSubmitting || (touched && !isValid)}
+              isDisabled={isSubmitting || (touched != null && !isValid)}
             />
           </form>
           <div className='mt-5 mb-5 grid grid-cols-3 items-center gap-1'>

@@ -10,7 +10,7 @@ interface IButton {
   onSubmit?: React.FormEventHandler<HTMLButtonElement> | undefined; 
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined; 
 }
-export const Button: React.FC<IButton> = ({ type = 'button', className, onSubmit, onClick, btnText = '', isDisabled = false, loading, btnIcon }) => {
+export const Button: React.FC<IButton> = ({ type = 'button', className, onSubmit, onClick, btnText = '', isDisabled = false, loading = false, btnIcon }) => {
   return (
     <button
       type={type}

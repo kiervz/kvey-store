@@ -23,7 +23,7 @@ const Register = () => {
   const registerHandler = async (values: any, setSubmitting: (isSubmitting: boolean) => void) => {
     try {
       const { data } = await axios.post('/api/v1/auth/register', values);
-      notifyUser('success', data.message);
+      notifyUser('success', data.message, 'light', 'top-center');
       navigate('/login');
     } catch(err: any) {
       const status = err?.response?.status;
@@ -32,10 +32,10 @@ const Register = () => {
       setError(error);
     } finally { 
       setTimeout(() => {
-    setSubmitting(false);
+        setSubmitting(false);
       }, 400);
     }
-  }
+  };
 
   return (
     <section className='bg-gray-100 min-h-screen flex items-center justify-center'>
@@ -43,7 +43,7 @@ const Register = () => {
         <div className='w-[100%] p-16'>
           <h2 className='font-bold text-2xl'>Register</h2>
           <p className='text-sm mt-4'>Register to create an account.</p>
-          { error && <p className='bg-red-200 p-2 rounded mt-6'>{ error }</p>}
+          { error != null && <p className='bg-red-200 p-2 rounded mt-6'>{ error }</p>}
           <div className="mt-5 md:col-span-2 md:mt-0">
             <form onSubmit={handleSubmit} className='mt-6'>
               <div className="grid grid-cols-1 gap-4">
@@ -53,7 +53,7 @@ const Register = () => {
                     type="text" 
                     name="name" 
                     id="name" 
-                    className={`p-2 mt-1 w-full rounded-xl border  ${errors.name ? 'border-2 border-red-600': ''}`}
+                    className={`p-2 mt-1 w-full rounded-xl border  ${errors.name != null ? 'border-2 border-red-600': ''}`}
                     value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -65,7 +65,7 @@ const Register = () => {
                     type="email" 
                     name="email" 
                     id="email" 
-                    className={`p-2 mt-1 w-full rounded-xl border  ${errors.email ? 'border-2 border-red-600': ''}`}
+                    className={`p-2 mt-1 w-full rounded-xl border  ${errors.email != null ? 'border-2 border-red-600': ''}`}
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -77,7 +77,7 @@ const Register = () => {
                     <Select 
                       id="gender" 
                       name="gender" 
-                      className={`mt-1 block w-full rounded-xl border bg-white py-2.5 px-3 shadow-sm  ${errors.gender ? 'border-2 border-red-600': ''}`}
+                      className={`mt-1 block w-full rounded-xl border bg-white py-2.5 px-3 shadow-sm  ${errors.gender != null ? 'border-2 border-red-600': ''}`}
                       value={values.gender}
                       onChange={handleChange}
                     >
@@ -91,7 +91,7 @@ const Register = () => {
                       type="date" 
                       name="birthday" 
                       id="birthday" 
-                      className={`p-2 mt-1 w-full rounded-xl border  ${errors.email ? 'border-2 border-red-600': ''}`}
+                      className={`p-2 mt-1 w-full rounded-xl border  ${errors.email != null ? 'border-2 border-red-600': ''}`}
                       value={values.birthday}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -104,7 +104,7 @@ const Register = () => {
                     type="password" 
                     name="password"
                     id="password"
-                    className={`p-2 mt-1 w-full rounded-xl border  ${errors.email ? 'border-2 border-red-600': ''}`}
+                    className={`p-2 mt-1 w-full rounded-xl border  ${errors.email != null ? 'border-2 border-red-600': ''}`}
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -116,7 +116,7 @@ const Register = () => {
                     type="password"
                     name="password_confirmation"
                     id="password_confirmation"
-                    className={`p-2 mt-1 w-full rounded-xl border  ${errors.email ? 'border-2 border-red-600': ''}`}
+                    className={`p-2 mt-1 w-full rounded-xl border  ${errors.email != null ? 'border-2 border-red-600': ''}`}
                     value={values.password_confirmation}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -126,7 +126,7 @@ const Register = () => {
                   type='submit'
                   className='bg-[#020a0f] text-white py-2 rounded-xl enabled:hover:bg-[#212529] disabled:bg-[#6F7275] duration-300 mt-2'
                   btnText={'Register'}
-                  isDisabled={isSubmitting || (touched && !isValid)}
+                  isDisabled={isSubmitting || (touched != null && !isValid)}
                 />
               </div>
             </form>

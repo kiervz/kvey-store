@@ -10,9 +10,10 @@ export const RequireAuth = ({ allowedRoles } :IRequireAuth) => {
   const location = useLocation();
 
   return (
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     userState?.data?.roles?.find((role: number) => allowedRoles?.includes(role))
       ? <Outlet />
-      : userState?.token
+      : userState?.token != ''
         ? <Navigate to="/unauthorized" state={{ from: location }} replace />
         : <Navigate to="/login" state={{ from: location }} replace />
   );

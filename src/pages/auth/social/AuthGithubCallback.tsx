@@ -14,9 +14,9 @@ const AuthGithubCallback = () => {
     axios.post(`/api/v1/auth/callback/github?code=${code}`)
       .then(({ data }) => {
         dispatch(userAction.setUser(data.response));
-        if (data.response.user.roles.includes(1)) {
+        if (data != null && Boolean(data.response.user.roles.includes(1))) {
           navigate('/dashboard');
-        } else if (data.response.user.roles.includes(2)) {
+        } else if (data != null && Boolean(data.response.user.roles.includes(2))) {
           navigate('/home');
         }
       }).catch(error => console.log(error));  
