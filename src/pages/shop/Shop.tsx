@@ -1,6 +1,6 @@
 import React from 'react';
 import { Banner } from './Banner';
-import { Category } from './Category';
+import { Categories } from './Category/Categories';
 import { PriceRange } from './PriceRange';
 import { Products } from './Products';
 import { SortBy } from './SortBy';
@@ -17,7 +17,7 @@ export const Shop = () => {
             <p className='mx-2'>/</p>
             <a href='/#' className='text-gray-600'>Shoes</a>
           </div>
-          <Category />
+          <Categories />
           <PriceRange />
           <SortBy />
         </div>
