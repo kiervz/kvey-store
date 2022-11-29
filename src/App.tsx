@@ -11,6 +11,7 @@ import Missing from './pages/missing/Missing';
 import AuthGoogleCallback from './pages/auth/social/AuthGoogleCallback';
 import AuthGithubCallback from './pages/auth/social/AuthGithubCallback';
 import Landing from './pages/landing/Landing';
+import { Shop } from './pages/shop/Shop';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/auth/github/callback" element={<AuthGithubCallback />} />
         </Route>
         <Route path='/' element={<Landing />} />
+        <Route path='/shop' element={<Shop />} />
 
         {/* Protect these Admin routes  */}
         <Route element={<RequireAuth allowedRoles={[roles.ADMIN]}/>}>
