@@ -1,8 +1,8 @@
 import React from 'react';
 import { Banner } from './Banner';
-import { Categories } from './Category/Categories';
+import { Categories } from './categories';
 import { PriceRange } from './PriceRange';
-import { Products } from './Products';
+import { Products } from './products';
 import { SortBy } from './SortBy';
 
 export const Shop = () => {
@@ -23,9 +23,7 @@ export const Shop = () => {
         </div>
         <div className='p-4 col-span-3 order-1 md:order-2 h-auto'>
           <Banner />
-          <div className="mt-6 grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            <Products />
-          </div>
+          <Products />
         </div>
       </div>
     </div>
