@@ -1,5 +1,5 @@
 import React from 'react';
-import { Banner } from './Banner';
+import { Link } from 'react-router-dom';
 import { Categories } from './categories';
 import { PriceRange } from './PriceRange';
 import { Products } from './products';
@@ -10,19 +10,20 @@ export const Shop = () => {
     <div className='container mx-auto mt-4'>
       <div className='grid grid-cols-1 md:grid-cols-4'>
         <div className='p-4 order-2 md:order-1 flex flex-col h-min'> 
-          <div className='flex justify-start'>
-            <a href='/#'>Home</a>
+          <div className='flex justify-start text-sm'>
+            <Link to='/'>Home</Link>
             <p className='mx-2'>/</p>
-            <a href='/#'>Men</a>
-            <p className='mx-2'>/</p>
-            <a href='/#' className='text-gray-600'>Shoes</a>
+            <p className='text-gray-600'>Shop</p>
           </div>
           <Categories />
           <PriceRange />
           <SortBy />
         </div>
         <div className='p-4 col-span-3 order-1 md:order-2 h-auto'>
-          <Banner />
+          <div className='flex justify-start'>
+            <p className='text-sm'>Showing 1-12 of 53 results</p>
+          </div>
+          {/* <Banner /> */}
           <Products />
         </div>
       </div>

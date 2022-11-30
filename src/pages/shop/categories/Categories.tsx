@@ -22,7 +22,7 @@ export const Categories = () => {
   
   return (
     <div className='mt-4'>
-      <h3 className='bg-slate-900 text-white my-1 py-1 px-2 text-md font-semibold uppercase sm:my-1 sm:py-2 sm:px-4 rounded-md'>Mens Shoes</h3>
+      <h3 className='bg-gray-600 text-white py-1 px-2 text-sm font-semibold uppercase sm:py-2 sm:px-4 rounded-md'>Categories</h3>
       <ul>
         { categories != null && 
           categories.map((category: ICategory) => (
