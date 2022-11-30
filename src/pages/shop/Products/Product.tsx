@@ -16,18 +16,18 @@ export const Product = ({ name, slug, unit_price, actual_price, discount, produc
           />
         </div>
         <div className="mt-2">
-          <h3 className="text-md text-gray-600 font-semibold">
+          <h3 className="text-sm text-gray-900">
             <span aria-hidden="true" className="absolute"></span>
             {name}
           </h3>
-          <div className='flex gap-2 items-center'>
-            <p className="mt-1 text-md text-gray-600 font-semibold">{currencyFormat(actual_price)}</p>
-          </div>
-          { discount > 0 &&
+          <div className='flex justify-between gap-2 items-center'>
+            <p className="mt-1 text-sm text-gray-900">{currencyFormat(actual_price)}</p>
+            { discount > 0 &&
             <div className='flex items-center gap-2'>
               <p className="text-sm text-gray-600 line-through">{currencyFormat(unit_price)}</p>
-              <p className="text-sm text-gray-600 font-semibold">{`-${currencyFormat(discount, '')}%`}</p>
+              <p className="text-sm text-gray-900">{`-${currencyFormat(discount, '', 0)}%`}</p>
             </div> }
+          </div>
         </div>
       </Link>
       <Button 

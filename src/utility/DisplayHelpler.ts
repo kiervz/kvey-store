@@ -1,4 +1,4 @@
-export const currencyFormat = (value: number, currencySymbol = '₱') => {
-  return currencySymbol + '' + parseFloat(value.toString()).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+export const currencyFormat = (value: number, currencySymbol = '₱', decimal = 2) => {
+  return currencySymbol + '' + parseFloat(value.toString()).toFixed(decimal).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 };
   
