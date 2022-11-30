@@ -4,7 +4,7 @@ import { Button } from '../../../components/common';
 import { currencyFormat } from '../../../utility';
 import { IProduct } from './types';
 
-export const Product = ({ name, slug, unit_price, actual_price, discount, productImages, other }: IProduct) => {
+export const Product: React.FC<IProduct> = ({ name, slug, unit_price, actual_price, discount, productImages, other }) => {
   return (
     <div className="flex flex-col">
       <Link to={`/product/${slug}`} className='group'>

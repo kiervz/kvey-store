@@ -16,8 +16,9 @@ export const Navbar = () => {
           <li>
             <Link to='/shop'>Shop</Link>
           </li>
-          <li>Brand</li>
-          <li>Shop</li>
+          <li>
+            <Link to='/brand'>Brand</Link>
+          </li>
         </ul>
         <ul className='flex justify-between gap-4 items-center'>
           <li className='text-xl p-2 cursor-pointer hover:bg-slate-700 hover:rounded-full hover:p-2 hover:text-gray-200'>

@@ -4,7 +4,7 @@ import { Category } from './Category';
 import { ICategory } from './types';
 
 export const Categories = () => {
-  const [categories, setCategories] = useState<[]>([]);
+  const [categories, setCategories] = useState<ICategory[]>([]);
 
   const fetchCategories = async () => {
     try {
@@ -26,7 +26,10 @@ export const Categories = () => {
       <ul>
         { categories != null && 
           categories.map((category: ICategory) => (
-            <Category key={category.id} category={category} />
+            <Category 
+              {...category} 
+              key={category.id} 
+            />
           )) }
       </ul>
     </div>

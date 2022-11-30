@@ -4,7 +4,7 @@ import { Product } from './Product';
 import { IProduct } from './types';
 
 export const Products = () => {
-  const [products, setProducts] = useState<[]>([]);
+  const [products, setProducts] = useState<IProduct[]>([]);
 
   const fetchProducts = async () => {
     try {
