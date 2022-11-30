@@ -11,4 +11,21 @@
         -webkit-appearance: none;
         margin: 0;
     }
+    .scrollbar::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+    
+    .scrollbar::-webkit-scrollbar-track {
+        border-radius: 100vh;
+        background: #E1E9F5;
+    }
+    
+    .scrollbar::-webkit-scrollbar-thumb {
+        background: #304254;
+    }
+    
+    .scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #002540;
+    }
 }
