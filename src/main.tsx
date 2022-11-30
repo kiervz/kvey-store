@@ -11,7 +11,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 
 import { ToastContainer } from 'react-toastify';
-import { Content, Navbar } from './layouts';
 
 const persistor = persistStore(store);
 
@@ -19,10 +18,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
     <React.StrictMode>
       <PersistGate persistor={persistor}>
-        <Navbar />
-        <Content>
-          <App />
-        </Content>
+        <App />
         <ToastContainer />
       </PersistGate>
     </React.StrictMode>

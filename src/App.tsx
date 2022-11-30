@@ -12,34 +12,38 @@ import AuthGoogleCallback from './pages/auth/social/AuthGoogleCallback';
 import AuthGithubCallback from './pages/auth/social/AuthGithubCallback';
 import Landing from './pages/landing/Landing';
 import { Shop } from './pages/shop/Shop';
+import { Content, Navbar } from './layouts';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Public routes */}
-        <Route element={<AuthPages />}>
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path="/auth/google/callback" element={<AuthGoogleCallback />} />
-          <Route path="/auth/github/callback" element={<AuthGithubCallback />} />
-        </Route>
-        <Route path='/' element={<Landing />} />
-        <Route path='/shop' element={<Shop />} />
+      <Navbar />
+      <Content>
+        <Routes>
+          {/* Public routes */}
+          <Route element={<AuthPages />}>
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path="/auth/google/callback" element={<AuthGoogleCallback />} />
+            <Route path="/auth/github/callback" element={<AuthGithubCallback />} />
+          </Route>
+          <Route path='/' element={<Landing />} />
+          <Route path='/shop' element={<Shop />} />
 
-        {/* Protect these Admin routes  */}
-        <Route element={<RequireAuth allowedRoles={[roles.ADMIN]}/>}>
-          <Route path='/dashboard' element={<Dashboard />} />
-        </Route>    
+          {/* Protect these Admin routes  */}
+          <Route element={<RequireAuth allowedRoles={[roles.ADMIN]}/>}>
+            <Route path='/dashboard' element={<Dashboard />} />
+          </Route>    
 
-        {/* Protect these Customer routes */}
-        <Route element={<RequireAuth allowedRoles={[roles.CUSTOMER]}/>}>
-          <Route path='/home' element={<Home />} />
-        </Route>        
+          {/* Protect these Customer routes */}
+          <Route element={<RequireAuth allowedRoles={[roles.CUSTOMER]}/>}>
+            <Route path='/home' element={<Home />} />
+          </Route>        
 
-        {/* catch all */}
-        <Route path="*" element={<Missing />} />
-      </Routes>
+          {/* catch all */}
+          <Route path="*" element={<Missing />} />
+        </Routes>
+      </Content>
     </BrowserRouter>
   );
 };

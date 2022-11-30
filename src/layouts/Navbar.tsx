@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaHeart, FaShoppingBag } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import UserIcon from '../assets/images/user.jpg';
 
 export const Navbar = () => {
@@ -8,9 +9,13 @@ export const Navbar = () => {
   return (
     <nav className='bg-slate-900 text-white py-2 px-4 fixed top-0 w-full z-50'>
       <div className='container mx-auto px-4 flex justify-between items-center'>
-        <p className='text-sm uppercase font-bold p-2'>Kvey Store</p>
+        <p className='text-sm uppercase font-bold p-2'>
+          <Link to='/'>Kvey Store</Link>
+        </p>
         <ul className='flex justify-between gap-4 p-2'>
-          <li>Shop</li>
+          <li>
+            <Link to='/shop'>Shop</Link>
+          </li>
           <li>Brand</li>
           <li>Shop</li>
         </ul>
