@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaHeart, FaShoppingBag } from 'react-icons/fa';
+import { HiOutlineHeart, HiOutlineShoppingBag } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import UserIcon from '../assets/images/user.jpg';
 
@@ -21,14 +21,14 @@ export const Navbar = () => {
           </li>
         </ul>
         <ul className='flex justify-between gap-4 items-center'>
-          <li className='text-xl p-2 text-slate-700 cursor-pointer hover:bg-gray-200 hover:rounded-full hover:p-2 hover:text-slate-900 relative'>
-            <FaHeart />
+          <li className='text-xl p-2 text-black cursor-pointer hover:bg-gray-200 hover:rounded-full hover:p-2 hover:text-slate-900 relative'>
+            <HiOutlineHeart size={24} />
             <div className='bg-blue-500 rounded-full absolute -top-1 -right-3 text-sm w-5 flex justify-center items-center text-white'>
               <p className='mx-auto'>0</p>
             </div>
           </li>
-          <li className='text-xl p-2 text-slate-700 cursor-pointer hover:bg-gray-200 hover:rounded-full hover:p-2 hover:text-slate-900 relative'>
-            <FaShoppingBag />
+          <li className='text-xl p-2 text-black cursor-pointer hover:bg-gray-200 hover:rounded-full hover:p-2 hover:text-slate-900 relative'>
+            <HiOutlineShoppingBag size={24} />
             <div className='bg-blue-500 rounded-full absolute -top-1 -right-3 text-sm w-5 flex justify-center items-center text-white'>
               <p className='mx-auto'>0</p>
             </div>

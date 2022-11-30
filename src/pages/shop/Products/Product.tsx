@@ -17,7 +17,7 @@ export const Product: React.FC<IProduct> = ({ name, slug, unit_price, actual_pri
         </div>
         <div className="mt-2">
           <h3 className="text-sm text-gray-900">
-            <span aria-hidden="true" className="absolute"></span>
+            <span className="absolute"></span>
             {name}
           </h3>
           <div className='flex justify-between gap-2 items-center'>
@@ -31,7 +31,7 @@ export const Product: React.FC<IProduct> = ({ name, slug, unit_price, actual_pri
         </div>
       </Link>
       <Button 
-        className='px-3 py-2 text-center bg-gray-600 text-white hover:bg-gray-700 w-full rounded-md text-md md:text-md md:font-semibold mt-2'
+        className='px-3 py-2 text-center bg-[#212529] text-white hover:bg-[#424649] w-full rounded-md text-md md:text-md md:font-semibold mt-2'
         btnText={'Add to cart'}
       />
     </div>
