@@ -23,7 +23,7 @@ const Register = () => {
   const registerHandler = async (values: any, setSubmitting: (isSubmitting: boolean) => void) => {
     try {
       const { data } = await axios.post('/api/v1/auth/register', values);
-      notifyUser('success', data.message, 'light', 'top-center');
+      notifyUser('success', data.message);
       navigate('/login');
     } catch(err: any) {
       const status = err?.response?.status;

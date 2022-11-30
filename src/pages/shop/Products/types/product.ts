@@ -8,9 +8,9 @@ export interface IProduct {
   sku: string;
   name: string;
   slug: string;
-  unit_price: string;
-  actual_price: string;
-  discount: string;
+  unit_price: number;
+  actual_price: number;
+  discount: number;
   stock: number;
   description: string;
   productImages: IProductImage[];

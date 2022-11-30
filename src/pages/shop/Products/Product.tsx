@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../../../components/common';
+import { currencyFormat } from '../../../utility';
 import { IProduct } from './types';
 
-export const Product = ({ name, slug, actual_price, discount, productImages, other }: IProduct) => {
+export const Product = ({ name, slug, unit_price, actual_price, discount, productImages, other }: IProduct) => {
   return (
     <div className="flex flex-col">
       <Link to={`/product/${slug}`} className='group'>
@@ -15,11 +16,18 @@ export const Product = ({ name, slug, actual_price, discount, productImages, oth
           />
         </div>
         <div className="mt-2">
-          <h3 className="text-md text-gray-900">
+          <h3 className="text-md text-gray-600 font-semibold">
             <span aria-hidden="true" className="absolute"></span>
             {name}
           </h3>
-          <p className="mt-1 text-md text-gray-900">{actual_price}</p>
+          <div className='flex gap-2 items-center'>
+            <p className="mt-1 text-md text-gray-600 font-semibold">{currencyFormat(actual_price)}</p>
+          </div>
+          { discount > 0 &&
+            <div className='flex items-center gap-2'>
+              <p className="text-sm text-gray-600 line-through">{currencyFormat(unit_price)}</p>
+              <p className="text-sm text-gray-600 font-semibold">{`-${currencyFormat(discount, '')}%`}</p>
+            </div> }
         </div>
       </Link>
       <Button 
