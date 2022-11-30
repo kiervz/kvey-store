@@ -9,7 +9,7 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
 const persistConfig = {
-  key: 'root',
+  key: import.meta.env.VITE_APP_PERSIST_KEY,
   version: 1,
   storage
 };
