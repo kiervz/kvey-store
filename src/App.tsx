@@ -3,13 +3,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthPages, RequireAuth } from './containers';
 import { roles } from './constants';
 
-import Login from './pages/auth/Login';
-import Register from './pages/auth/Register';
+import { Login, Logout, Register, AuthGoogleCallback, AuthGithubCallback } from './pages/auth';
 import Dashboard from './pages/admin/dashboard/Dashboard';
 import Home from './pages/customer/home/Home';
 import Missing from './pages/missing/Missing';
-import AuthGoogleCallback from './pages/auth/social/AuthGoogleCallback';
-import AuthGithubCallback from './pages/auth/social/AuthGithubCallback';
 import Landing from './pages/landing/Landing';
 import { Shop } from './pages/shop/Shop';
 import { Content, Navbar } from './layouts';
@@ -28,6 +25,7 @@ const App = () => {
             <Route path="/auth/github/callback" element={<AuthGithubCallback />} />
           </Route>
           <Route path='/' element={<Landing />} />
+          <Route path='/logout' element={<Logout />} />
           <Route path='/shop' element={<Shop />} />
 
           {/* Protect these Admin routes  */}

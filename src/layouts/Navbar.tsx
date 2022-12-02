@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { HiOutlineHeart, HiOutlineShoppingBag } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import UserIcon from '../assets/images/user.jpg';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const userSlice = useSelector((state: any) => state.user.user);
+  
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <nav className='text-slate-900 bg-white py-2 px-4 fixed top-0 w-full z-50 shadow-sm'>
       <div className='container mx-auto px-4 flex justify-between items-center'>
@@ -35,14 +40,46 @@ export const Navbar = () => {
           </li>
           <li className='cursor-pointer relative'>
             <img 
-              className='w-8 h-8 object-cover rounded-full border-2 border-slate-400 hover:border-slate-900 focus:border-slate-900'
+              className='w-8 h-8 object-cover rounded-full border-2 focus:border-slate-900 '
               src={UserIcon} 
               onClick={() => setIsOpen(!isOpen)}
               alt='user icon'
             />
-            <div className={`${!isOpen && 'hidden'} bg-white py-2 rounded-lg mt-2 absolute right-0 w-48 shadow-inner`}>
-              <p className='text-sm text-slate-900 py-2 px-3 hover:bg-slate-700 hover:text-gray-100'>Account Settings</p>
-              <p className='text-sm text-slate-900 py-2 px-3 hover:bg-slate-700 hover:text-gray-100'>Logout</p>
+            <div className={`${!isOpen && 'hidden'} bg-white py-2 rounded-lg mt-2 absolute right-0 w-48 shadow-xl border`}>
+              { userSlice?.token != '' ? 
+                <>
+                  <Link 
+                    to='/settings'
+                    className='text-sm text-slate-900 py-2 px-3 hover:bg-gray-200 block'
+                    onClick={handleClick}
+                  >
+                    Account Settings
+                  </Link>
+                  <Link 
+                    to='/logout'
+                    className='text-sm text-slate-900 py-2 px-3 hover:bg-gray-200 block'
+                    onClick={handleClick}
+                  >
+                    Logout
+                  </Link>
+                </>
+                : 
+                <div>
+                  <Link 
+                    to='/login'
+                    className='text-sm text-slate-900 py-2 px-3 hover:bg-gray-200 block' 
+                    onClick={handleClick}
+                  >
+                    Login
+                  </Link>
+                  <Link 
+                    to='/register'
+                    className='text-sm text-slate-900 py-2 px-3 hover:bg-gray-200 block' 
+                    onClick={handleClick}
+                  >
+                    Register
+                  </Link>
+                </div> }
             </div>
           </li>
         </ul>

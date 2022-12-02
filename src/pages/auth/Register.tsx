@@ -8,7 +8,7 @@ import { useFormik } from 'formik';
 import { initialValues, schema } from '../../validations/register';
 import { notifyUser } from '../../utility/MessageHelper';
 
-const Register = () => {
+export const Register = () => {
   const navigate = useNavigate();
   const [error, setError] = useState<any>(null);
 
@@ -142,5 +142,3 @@ const Register = () => {
     </section>
   );
 };
-
-export default Register;

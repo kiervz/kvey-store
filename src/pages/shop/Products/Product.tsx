@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from '../../../config/AxiosClient';
 import { Link } from 'react-router-dom';
 import { Button } from '../../../components/common';
-import { currencyFormat } from '../../../utility';
+import { currencyFormat, notifyUser } from '../../../utility';
 import { IProduct } from './types';
 
-export const Product: React.FC<IProduct> = ({ name, slug, unit_price, actual_price, discount, productImages, other }) => {
+export const Product: React.FC<IProduct> = ({ id, name, slug, unit_price, actual_price, discount, productImages, other }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const handleAddToCart = async () => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.post('/api/v1/cart', {
+        product_id: id,
+        qty: 1
+      });
+
+      notifyUser('success', data.message);
+    } catch(err: any) {
+      const error = err.response?.data?.message;
+      console.log(error);
+      if (err.response.status === 401) {
+        notifyUser('error', 'Please login first to add to cart.');
+      }
+    } finally { setIsLoading(false); }
+  };
+
   return (
     <div className="flex flex-col">
       <Link to={`/product/${slug}`} className='group'>
@@ -31,8 +51,10 @@ export const Product: React.FC<IProduct> = ({ name, slug, unit_price, actual_pri
         </div>
       </Link>
       <Button 
-        className='px-3 py-2 text-center bg-[#212529] text-white hover:bg-[#424649] w-full rounded-md text-md md:text-md md:font-semibold mt-2'
+        className='px-3 py-2 text-center bg-[#212529] text-white hover:bg-[#424649] w-full rounded-md text-md md:text-md md:font-semibold mt-2 disabled:bg-[#999FA4] disabled:text-[#F5F5F5]'
         btnText={'Add to cart'}
+        loading={isLoading}
+        onClick={handleAddToCart}
       />
     </div>
   );

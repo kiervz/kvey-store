@@ -8,14 +8,9 @@ const axiosClient = axios.create({
   }
 });
 
-// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-const localPersist = localStorage.getItem(`persist:${import.meta.env.VITE_APP_PERSIST_KEY}`) ?? null;
-const localPersistParse = localPersist != null ? JSON.parse(localPersist) : null;
-const { user } = localPersistParse != null ? JSON.parse(localPersistParse.user) : {user: null};
-
 axiosClient.interceptors.request.use(
   (config: any) => {
-    config.headers['Authorization'] = `${user.tokenType ?? null} ${user.token ?? null}`;
+    config.headers['Authorization'] = `Bearer ${localStorage.getItem(`token:${import.meta.env.VITE_APP_PERSIST_KEY}`)}`;
 
     return config;
   },

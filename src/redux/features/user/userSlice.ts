@@ -14,9 +14,12 @@ const reducers = {
     state.user.data = action.payload.user;
     state.user.token = action.payload.token;
     state.user.tokenType = action.payload.token_type;
+    localStorage.setItem(`token:${import.meta.env.VITE_APP_PERSIST_KEY}`,  action.payload.token);
   },
   removeUser(state: User) {
-    state.user.data = initialState;
+    state.user = initialState.user;
+    localStorage.removeItem(`token:${import.meta.env.VITE_APP_PERSIST_KEY}`);
+    localStorage.removeItem(`persist:${import.meta.env.VITE_APP_PERSIST_KEY}`);
   }
 };
 

@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { initialValues, schema } from '../../validations/login';
 
-const Login = () => {
+export const Login = () => {
   const { values, errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, isValid } = useFormik({
     initialValues,
     validationSchema: schema,
@@ -159,5 +159,3 @@ const Login = () => {
     </section>
   );
 };
-
-export default Login;
