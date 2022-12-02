@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FaRegCircle, FaDotCircle } from 'react-icons/fa';
 
 interface IRadioProps {
   label: string;
@@ -23,17 +22,13 @@ export const Radio = ({ data, onSelected }:IRadio) => {
     <ul>
       { data?.map(item => (
         <li className='flex items-center px-3 py-1' key={item.label}>
-          { selected === item.value ?
-            <FaDotCircle 
-              id={item.value} 
-              className='w-4 h-4 text-slate-900 bg-gray-100 border-gray-300 cursor-pointer'
-              onClick={() => handleSelected(item.value)}
-            /> :
-            <FaRegCircle 
-              id={item.value} 
-              className='w-4 h-4 text-slate-900 bg-gray-100 border-gray-300 cursor-pointer'
-              onClick={() => handleSelected(item.value)}
-            /> }
+          { <input 
+            type="radio" 
+            id={item.value} 
+            className="bg-slate-100 border-slate-300 text-slate-900 focus:ring-slate-200"
+            onClick={() => handleSelected(item.value)}
+            checked={selected === item.value}
+          /> }
           <label 
             htmlFor={item.value} 
             className="ml-2 w-max cursor-pointer text-sm sm:text-md"

@@ -1,5 +1,4 @@
 import React from 'react';
-import { checkImage } from '../../../constants';
 import { ICategory } from './types';
 
 export const Category: React.FC<ICategory> = ({ slug, name}) => {
@@ -8,7 +7,7 @@ export const Category: React.FC<ICategory> = ({ slug, name}) => {
       <input 
         type="checkbox" 
         id={slug} 
-        className={`cursor-pointer peer relative h-5 w-5 shrink-0 appearance-none rounded-sm border after:absolute after:left-0 after:top-0 after:h-full after:w-full after:bg-[url('${checkImage}')] after:bg-[length:40px] after:bg-center after:bg-no-repeat after:content-[''] checked:bg-slate-900 hover:ring hover:ring-gray-300 focus:outline-none`} 
+        className="bg-slate-100 border-slate-300 text-slate-900 focus:ring-slate-200"
       />
       <label 
         htmlFor={slug} 
