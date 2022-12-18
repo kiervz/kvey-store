@@ -1,6 +1,8 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
+
 import userSlice from './features/user/userSlice';
+import cartSlice from './features/cart/cartSlice';
 
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
@@ -16,6 +18,7 @@ const persistConfig = {
 
 const reducer = combineReducers({
   user: userSlice.reducer,
+  cart: cartSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

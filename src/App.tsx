@@ -10,6 +10,7 @@ import Missing from './pages/missing/Missing';
 import Landing from './pages/landing/Landing';
 import { Shop } from './pages/shop/Shop';
 import { Content, Navbar } from './layouts';
+import { Cart } from './pages/customer/cart/Cart';
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
           {/* Protect these Customer routes */}
           <Route element={<RequireAuth allowedRoles={[roles.CUSTOMER]}/>}>
             <Route path='/home' element={<Home />} />
+            <Route path='/cart' element={<Cart />} />
           </Route>        
 
           {/* catch all */}
