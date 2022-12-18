@@ -18,25 +18,29 @@ export const Navbar = () => {
           <Link to='/'>Kvey Store</Link>
         </p>
         <ul className='flex justify-between gap-4 p-2'>
-          <li>
+          <li className='hidden sm:block'>
             <Link to='/shop'>Shop</Link>
           </li>
-          <li>
+          <li className='hidden sm:block'>
             <Link to='/brand'>Brand</Link>
           </li>
         </ul>
         <ul className='flex justify-between gap-4 items-center'>
-          <li className='text-xl p-2 text-black cursor-pointer hover:bg-gray-200 hover:rounded-full hover:p-2 hover:text-slate-900 relative'>
+          <li className='hidden sm:block text-xl p-2 text-black cursor-pointer hover:bg-gray-200 hover:rounded-full hover:p-2 hover:text-slate-900 relative'>
             <HiOutlineHeart size={24} />
             <div className='bg-blue-500 rounded-full absolute -top-1 -right-3 text-sm w-5 flex justify-center items-center text-white'>
               <p className='mx-auto'>0</p>
             </div>
           </li>
           <li className='text-xl p-2 text-black cursor-pointer hover:bg-gray-200 hover:rounded-full hover:p-2 hover:text-slate-900 relative'>
-            <HiOutlineShoppingBag size={24} />
-            <div className='bg-blue-500 rounded-full absolute -top-1 -right-3 text-sm w-5 flex justify-center items-center text-white'>
-              <p className='mx-auto'>0</p>
-            </div>
+            <Link 
+              to='/cart'
+            >
+              <HiOutlineShoppingBag size={24} />
+              <div className='bg-blue-500 rounded-full absolute -top-1 -right-3 text-sm w-5 flex justify-center items-center text-white'>
+                <p className='mx-auto'>0</p>
+              </div>
+            </Link>
           </li>
           <li className='cursor-pointer relative'>
             <img 

@@ -38,7 +38,7 @@ export const Register = () => {
   };
 
   return (
-    <section className='bg-gray-100 min-h-screen flex items-center justify-center'>
+    <section className='bg-[#F9FAFB] min-h-screen flex items-center justify-center'>
       <div className='bg-white flex rounded-2xl max-w-6xl shadow-lg w-[600px]'>
         <div className='w-[100%] p-16'>
           <h2 className='font-bold text-2xl'>Register</h2>

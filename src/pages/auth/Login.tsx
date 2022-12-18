@@ -79,7 +79,7 @@ export const Login = () => {
   };
   
   return (
-    <section className='bg-gray-100 min-h-screen flex items-center justify-center'>
+    <section className='bg-[#F9FAFB] min-h-screen flex items-center justify-center'>
       <div className='bg-white flex rounded-2xl max-w-5xl shadow-lg'>
         <div className='sm:w-1/2 w-[100%] p-16'>
           <h2 className='font-bold text-2xl'>Login</h2>

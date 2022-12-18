@@ -6,7 +6,7 @@ interface Props {
 
 export const Content:React.FC<Props> = ({ children }) => {
   return (
-    <div className=' mt-14'>
+    <div className='mt-16'>
       {children}
     </div>
   );
