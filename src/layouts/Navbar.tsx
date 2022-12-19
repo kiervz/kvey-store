@@ -12,7 +12,7 @@ export const Navbar = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <nav className='text-slate-900 bg-white py-2 px-4 fixed top-0 w-full z-50 shadow-sm'>
+    <nav className='text-slate-900 bg-white py-2 px-4 fixed top-0 w-full z-30 shadow-sm'>
       <div className='container mx-auto px-4 flex justify-between items-center'>
         <p className='text-sm uppercase font-bold p-2'>
           <Link to='/'>Kvey Store</Link>
