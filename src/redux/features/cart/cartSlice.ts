@@ -19,10 +19,15 @@ const reducers = {
   setCart(state: CartProps, action: any) {
     state.cart = action.payload;
   },
+  removeCartItem(state: CartProps, action: any) {
+    const carts = state.cart;
+    
+    state.cart = carts.filter(item => item.id !== action.payload.cartId);
+  },
   removeCart(state: CartProps) {
     state.cart = initialState.cart;
     state.subTotal = initialState.subTotal;
-    state.subTotalItems = initialState.subTotalItems;
+    state.subTotalItems = initialState.subTotalItems; 
     state.totalCartItems = initialState.totalCartItems;
   },
   setSubTotal(state: CartProps, action: any) {

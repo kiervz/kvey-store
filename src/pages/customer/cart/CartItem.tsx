@@ -6,7 +6,12 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { currencyFormat } from '../../../utility/DisplayHelpler';
 import { Button, Input, LoaderBackdrop } from '../../../components/common';
 
+import { cartAction } from '../../../redux/features/cart/cartSlice';
+import { useDispatch } from 'react-redux';
+
 export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, price, qty, sub_total, selected, image }) => {  
+  const dispatch = useDispatch();
+
   const [quantity, setQuantity] = useState<number>(qty);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isCheck, setIsCheck] = useState<boolean>(Boolean(selected));
@@ -49,6 +54,23 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, price, qty, su
         cart_id: id,
         action: action
       });
+    } catch (err: any) {
+      const error = err.response?.data?.message;
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const deleteItem = async () => {
+    setIsLoading(true);
+    try {
+      await axios.delete('/api/v1/cart', {
+        data: {
+          cart_item_id: [id]
+        }
+      });
+      dispatch(cartAction.removeCartItem({ cartId: id }));
     } catch (err: any) {
       const error = err.response?.data?.message;
       console.log(error);
@@ -113,7 +135,10 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, price, qty, su
               </div>
               <div className='col-span-3 lg:col-span-2'>
                 <p>{ currencyFormat(+price) }</p>
-                <FaTrashAlt className='text-gray-500 cursor-pointer' onClick={() => console.log(id)}/>
+                <FaTrashAlt 
+                  className='text-gray-500 cursor-pointer' 
+                  onClick={deleteItem}
+                />
               </div>
             </div>
           </div>
