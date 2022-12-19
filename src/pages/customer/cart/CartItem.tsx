@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import axios from '../../../config/AxiosClient';
+
 import { Cart } from '../../../redux/features/cart/types';
 import { FaTrashAlt } from 'react-icons/fa';
-import axios from '../../../config/AxiosClient';
 import { currencyFormat } from '../../../utility/DisplayHelpler';
+import { Input } from '../../../components/common';
 
 export const Counter = () => {
   return (
@@ -44,40 +46,38 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, price, qty, su
     <>
       <div className='w-[100%] h-auto pr-4 mt-4 mb-4'>
         <div className="grid grid-cols-12 pl-5">
-          <img
-            className="product_img h-20 w-16 object-cover col-span-1"
-            src={image}
-            alt="product_img"
-          />
-
-          <div className="flex items-start h-auto flex-col ml-5 col-span-11">
+          <div className='flex justify-center items-center gap-2 col-span-2 sm:col-span-2'>
+            <Input 
+              type="checkbox" 
+              id={slug} 
+              className="bg-slate-100 border-slate-300 text-slate-900 focus:ring-slate-200"
+            />
+            <img
+              className="product_img h-24 w-16 lg:h-28 lg:w-24 object-cover"
+              src={image}
+              alt="product_img"
+            />
+          </div>
+          <div className="flex items-start h-auto flex-col ml-5 col-span-10 sm:col-span-10">
             <p className='font-medium'>{name}</p>
             <div className='grid grid-cols-12 w-[100%]'>
-              <div className='col-span-6'>
+              <div className='col-span-full lg:col-span-5'>
                 <p>{brand}</p>
               </div>
-              <div className='col-span-2'>
-                <b className='text-orange-600'>{ currencyFormat(+price) }</b>
+              <div className='col-span-4 lg:col-span-2'>
+                <p className='text-orange-600'>{ currencyFormat(+price) }</p>
                 <p className='text-gray-500 line-through'>{ currencyFormat(+price) }</p>
               </div>
-              <div className='col-span-2'>
+              <div className='col-span-5 lg:col-span-3'>
                 <Counter />
               </div>
-              <div className='col-span-2'>
-                <b>{ currencyFormat(+price) }</b>
+              <div className='col-span-3 lg:col-span-2'>
+                <p>{ currencyFormat(+price) }</p>
                 <FaTrashAlt className='text-gray-500 cursor-pointer' onClick={() => console.log(id)}/>
               </div>
             </div>
           </div>
         </div>
-
-        {/* <div className='flex justify-center items-center self-start mobile:mt-7 mobile:mb-7'>
-          <p className="flex flex-col justify-center pr-16">
-            <b>{ currencyFormat(+price) }</b>
-            <FaTrashAlt className='text-gray-500 cursor-pointer' onClick={() => console.log(id)}/>
-          </p>
-          <Counter />
-        </div> */}
       </div>
     </>
   );

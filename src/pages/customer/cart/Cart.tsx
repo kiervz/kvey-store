@@ -28,8 +28,8 @@ export const Cart = () => {
 
   return (
     <div className='container mx-auto py-2 px-4 '>
-      <div className="flex flex-row mt-7 mobile:flex-col">
-        <div className="flex flex-col flex-1 bg-white rounded-md mx-2">
+      <div className="flex flex-col md:flex-row mt-7 mobile:flex-col gap-2">
+        <div className="flex flex-col flex-1 bg-white rounded-md">
           { carts != null && carts.map((cart) => (
             <CartItem
               key={cart.id}
