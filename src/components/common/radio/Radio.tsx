@@ -26,6 +26,7 @@ export const Radio = ({ data, onSelected }:IRadio) => {
             type="radio" 
             id={item.value} 
             className="bg-slate-100 border-slate-300 text-slate-900 focus:ring-slate-200"
+            onChange={() => handleSelected(item.value)}
             onClick={() => handleSelected(item.value)}
             checked={selected === item.value}
           /> }

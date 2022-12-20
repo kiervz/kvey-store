@@ -9,7 +9,7 @@ import { Button, Input, LoaderBackdrop } from '../../../components/common';
 import { cartAction } from '../../../redux/features/cart/cartSlice';
 import { useDispatch } from 'react-redux';
 
-export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, price, qty, sub_total, selected, image }) => {  
+export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, price, discount, qty, sub_total, selected, image }) => {  
   const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState<number>(qty);
@@ -19,12 +19,13 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, price, qty, su
   const handleSelectItem = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsLoading(true);
     try {
-      await axios.put('/api/v1/cart/select', {
+      const { data } = await axios.put('/api/v1/cart/select', {
         cart_id: Number(e.target.value),
         is_selected: Number(!!e.target.checked)
       });
 
       setIsCheck(!e.target.checked);
+      dispatch(cartAction.setCart(data.response.data));
     } catch (err: any) {
       const error = err.response?.data?.message;
       console.log(error);
@@ -50,10 +51,12 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, price, qty, su
   const updateItemQuantity = async (action: string) => { 
     setIsLoading(true);
     try {
-      await axios.put('/api/v1/cart/quantity', {
+      const { data } = await axios.put('/api/v1/cart/quantity', {
         cart_id: id,
         action: action
       });
+      
+      dispatch(cartAction.setCart(data.response.data));
     } catch (err: any) {
       const error = err.response?.data?.message;
       console.log(error);
@@ -70,6 +73,7 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, price, qty, su
           cart_item_id: [id]
         }
       });
+      
       dispatch(cartAction.removeCartItem({ cartId: id }));
     } catch (err: any) {
       const error = err.response?.data?.message;
@@ -107,7 +111,7 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, price, qty, su
               </div>
               <div className='col-span-4 lg:col-span-2'>
                 <p className='text-orange-600'>{ currencyFormat(+price) }</p>
-                <p className='text-gray-500 line-through'>{ currencyFormat(+price) }</p>
+                { discount > 0 && <p className='text-gray-500 line-through'>{ currencyFormat(+price) }</p> }
               </div>
               <div className='col-span-5 lg:col-span-3'>
                 <div className="flex items-center justify-center w-min">
@@ -134,7 +138,7 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, price, qty, su
                 </div>
               </div>
               <div className='col-span-3 lg:col-span-2'>
-                <p>{ currencyFormat(+price) }</p>
+                <p>{ currencyFormat(+sub_total) }</p>
                 <FaTrashAlt 
                   className='text-gray-500 cursor-pointer' 
                   onClick={deleteItem}

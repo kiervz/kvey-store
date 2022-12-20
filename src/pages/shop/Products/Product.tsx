@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom';
 import { Button } from '../../../components/common';
 import { currencyFormat, notifyUser } from '../../../utility';
 import { IProduct } from './types';
+import { cartAction } from '../../../redux/features/cart/cartSlice';
+import { useDispatch } from 'react-redux';
 
 export const Product: React.FC<IProduct> = ({ id, name, slug, unit_price, actual_price, discount, productImages, other }) => {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const handleAddToCart = async () => {
     try {
       setIsLoading(true);
@@ -14,7 +18,7 @@ export const Product: React.FC<IProduct> = ({ id, name, slug, unit_price, actual
         product_id: id,
         qty: 1
       });
-
+      dispatch(cartAction.setCart(data.response.data));
       notifyUser('success', data.message);
     } catch(err: any) {
       const error = err.response?.data?.message;

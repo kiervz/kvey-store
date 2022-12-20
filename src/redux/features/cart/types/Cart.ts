@@ -4,7 +4,8 @@ export interface Cart {
   name: string;
   slug: string;
   brand: string;
-  price: string;
+  price: number;
+  discount: number;
   qty: number;
   sub_total: number;
   stock: number;

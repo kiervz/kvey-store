@@ -17,12 +17,22 @@ const initialState =  {
 
 const reducers = {
   setCart(state: CartProps, action: any) {
-    state.cart = action.payload;
+    const carts = action.payload;
+    state.cart = carts;
+    state.totalCartItems = state.cart.reduce((total: number, currentValue: any) => total + currentValue.qty, 0);
+
+    const selectedItem = carts.filter((item: Cart) => item.selected !== 0);
+    state.subTotalItems = selectedItem.length;
+    state.subTotal = selectedItem.reduce((total: number, currentValue: any) => total + currentValue.sub_total, 0);
   },
   removeCartItem(state: CartProps, action: any) {
-    const carts = state.cart;
-    
-    state.cart = carts.filter(item => item.id !== action.payload.cartId);
+    const carts = state.cart.filter(item => item.id !== action.payload.cartId);
+    state.cart = carts;
+    state.totalCartItems = carts.reduce((total: number, currentValue: any) => total + currentValue.qty, 0);
+
+    const selectedItem = carts.filter((item: Cart) => item.selected !== 0);
+    state.subTotalItems = selectedItem.length;
+    state.subTotal = selectedItem.reduce((total: number, currentValue: any) => total + currentValue.sub_total, 0);
   },
   removeCart(state: CartProps) {
     state.cart = initialState.cart;
@@ -38,7 +48,7 @@ const reducers = {
   },
   setTotalCartItems(state: CartProps, action: any) {
     state.totalCartItems = action.payload;
-  },
+  }
 };
 
 const cartSlice = createSlice({

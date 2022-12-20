@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from '../../../config/AxiosClient';
-import { useDispatch } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { cartAction } from '../../../redux/features/cart/cartSlice';
 import { Cart as CartProps } from '../../../redux/features/cart/types';
 import { CartItem } from './CartItem';
 import { OrderSummary } from './OrderSummary';
 
 export const Cart = () => {
-
   const dispatch = useDispatch();
-  const [carts, setCarts] = useState<CartProps[]>([]);
+  const cartsState = useSelector((state: any) => state.cart.cart);
 
   const fetchCarts = async () => {
     try {
       const { data } = await axios.get('/api/v1/cart');
-      setCarts(data.response.data);
+      console.log(data.response.data);
+      
       dispatch(cartAction.setCart(data.response.data));
     } catch (err: any) {
       const error = err.response?.data?.message;
@@ -28,17 +29,22 @@ export const Cart = () => {
 
   return (
     <div className='container mx-auto py-2 px-4 '>
-      <div className="flex flex-col md:flex-row mt-7 mobile:flex-col gap-2">
-        <div className="flex flex-col flex-1 bg-white rounded-md">
-          { carts != null && carts.map((cart) => (
-            <CartItem
-              key={cart.id}
-              {...cart}
-            />
-          ))}
+      { cartsState.length > 0 ? 
+        <div className="flex flex-col md:flex-row mt-7 mobile:flex-col gap-2">
+          <div className="flex flex-col flex-1 bg-white rounded-md">
+            { cartsState != null && cartsState.map((cart: CartProps) => (
+              <CartItem
+                key={cart.id}
+                {...cart}
+              />
+            ))}
+          </div>
+          <OrderSummary />
         </div>
-        <OrderSummary />
-      </div>
+        :
+        <div className='bg-white p-5 rounded-lg'>
+          <p className='text-center'> No Carts Found.</p>
+        </div> }
     </div>
   );
 };

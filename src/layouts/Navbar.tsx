@@ -7,6 +7,7 @@ import UserIcon from '../assets/images/user.jpg';
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const userSlice = useSelector((state: any) => state.user.user);
+  const cartSlice = useSelector((state: any) => state.cart);
   
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -28,7 +29,7 @@ export const Navbar = () => {
         <ul className='flex justify-between gap-4 items-center'>
           <li className='hidden sm:block text-xl p-2 text-black cursor-pointer hover:bg-gray-200 hover:rounded-full hover:p-2 hover:text-slate-900 relative'>
             <HiOutlineHeart size={24} />
-            <div className='bg-blue-500 rounded-full absolute -top-1 -right-3 text-sm w-5 flex justify-center items-center text-white'>
+            <div className='bg-blue-500 rounded-full absolute -top-1 -right-1 text-sm w-5 flex justify-center items-center text-white'>
               <p className='mx-auto'>0</p>
             </div>
           </li>
@@ -37,8 +38,8 @@ export const Navbar = () => {
               to='/cart'
             >
               <HiOutlineShoppingBag size={24} />
-              <div className='bg-blue-500 rounded-full absolute -top-1 -right-3 text-sm w-5 flex justify-center items-center text-white'>
-                <p className='mx-auto'>0</p>
+              <div className='bg-blue-500 rounded-full absolute -top-1 -right-1 text-sm w-5 flex justify-center items-center text-white'>
+                <p className='mx-auto'>{ cartSlice.totalCartItems }</p>
               </div>
             </Link>
           </li>
@@ -68,7 +69,7 @@ export const Navbar = () => {
                   </Link>
                 </>
                 : 
-                <div>
+                <>
                   <Link 
                     to='/login'
                     className='text-sm text-slate-900 py-2 px-3 hover:bg-gray-200 block' 
@@ -83,7 +84,7 @@ export const Navbar = () => {
                   >
                     Register
                   </Link>
-                </div> }
+                </> }
             </div>
           </li>
         </ul>
