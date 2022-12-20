@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from '../../../components/common';
 import { currencyFormat } from '../../../utility';
 import { useSelector } from 'react-redux';
+import { Checkout } from './Checkout';
 
 export const OrderSummary = () => {
   const cartState = useSelector((state: any) => state.cart);
@@ -17,11 +17,7 @@ export const OrderSummary = () => {
         <p className='text-gray-600'>Shipping Fee</p>
         <p className='text-black'>{currencyFormat(+0)}</p>
       </div>
-      <Button 
-        type='submit'
-        className='bg-[#020a0f] text-white py-2 rounded-xl enabled:hover:bg-[#212529] disabled:bg-[#6F7275] duration-300 w-[100%]'
-        btnText={'Checkout'}
-      />
+      <Checkout />
     </div>
   );
 };

@@ -14,8 +14,6 @@ export const Cart = () => {
   const fetchCarts = async () => {
     try {
       const { data } = await axios.get('/api/v1/cart');
-      console.log(data.response.data);
-      
       dispatch(cartAction.setCart(data.response.data));
     } catch (err: any) {
       const error = err.response?.data?.message;

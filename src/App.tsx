@@ -11,6 +11,7 @@ import Landing from './pages/landing/Landing';
 import { Shop } from './pages/shop/Shop';
 import { Content, Navbar } from './layouts';
 import { Cart } from './pages/customer/cart/Cart';
+import { OrderSuccess } from './pages/customer/success/OrderSuccess';
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
           <Route element={<RequireAuth allowedRoles={[roles.CUSTOMER]}/>}>
             <Route path='/home' element={<Home />} />
             <Route path='/cart' element={<Cart />} />
+            <Route path='/success' element={<OrderSuccess />} />
           </Route>        
 
           {/* catch all */}
