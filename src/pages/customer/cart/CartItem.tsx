@@ -9,7 +9,7 @@ import { Button, Input, LoaderBackdrop } from '../../../components/common';
 import { cartAction } from '../../../redux/features/cart/cartSlice';
 import { useDispatch } from 'react-redux';
 
-export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, price, discount, qty, sub_total, selected, image }) => {  
+export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, unit_price, price, discount, qty, sub_total, selected, image }) => {  
   const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState<number>(qty);
@@ -111,7 +111,7 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, price, discoun
               </div>
               <div className='col-span-4 lg:col-span-2'>
                 <p className='text-orange-600'>{ currencyFormat(+price) }</p>
-                { discount > 0 && <p className='text-gray-500 line-through'>{ currencyFormat(+price) }</p> }
+                { discount > 0 && <p className='text-gray-500 line-through text-sm'>{ currencyFormat(+unit_price) }</p> }
               </div>
               <div className='col-span-5 lg:col-span-3'>
                 <div className="flex items-center justify-center w-min">
