@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import axios from '../../../config/AxiosClient';
 
 import { Cart } from '../../../redux/features/cart/types';
-import { FaTrashAlt } from 'react-icons/fa';
+import { HiOutlineTrash } from 'react-icons/hi';
 import { currencyFormat } from '../../../utility/DisplayHelpler';
 import { Button, Input, LoaderBackdrop } from '../../../components/common';
 
 import { cartAction } from '../../../redux/features/cart/cartSlice';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, unit_price, price, discount, qty, sub_total, selected, image }) => {  
   const dispatch = useDispatch();
@@ -88,7 +89,10 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, unit_price, pr
       {isLoading ? <LoaderBackdrop /> : ''}
       <div className='w-[100%] h-auto pr-4 mt-4 mb-4'>
         <div className="grid grid-cols-12">
-          <div className='flex justify-center items-center gap-2 col-span-2'>
+          <Link 
+            className='ml-5 flex justify-center items-center gap-2 col-span-3 sm:col-span-2'
+            to={`/product/${slug}`}
+          >
             <Input 
               type="checkbox" 
               id={slug} 
@@ -98,22 +102,27 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, unit_price, pr
               onChange={(e) => handleSelectItem(e)}
             />
             <img
-              className="product_img h-24 w-16 lg:h-28 lg:w-20 object-cover"
+              className="h-24 w-[64px] lg:h-28 lg:w-20 object-cover"
               src={image}
-              alt="product_img"
+              alt="Product image"
             />
-          </div>
-          <div className="flex items-start h-auto flex-col ml-5 col-span-10">
-            <p className='font-medium'>{name}</p>
+          </Link>
+          <div className="flex items-start h-auto flex-col ml-5 col-span-9 sm:col-span-10">
+            <Link 
+              className='text-md' 
+              to={`/product/${slug}`}
+            >
+              {name}
+            </Link>
             <div className='grid grid-cols-12 w-[100%]'>
               <div className='col-span-full lg:col-span-5'>
-                <p>{brand}</p>
+                <p className='text-sm'>{brand}</p>
               </div>
-              <div className='col-span-4 lg:col-span-2'>
+              <div className='col-span-5 sm:col-span-4 lg:col-span-2'>
                 <p className='text-orange-600'>{ currencyFormat(+price) }</p>
                 { discount > 0 && <p className='text-gray-500 line-through text-sm'>{ currencyFormat(+unit_price) }</p> }
               </div>
-              <div className='col-span-5 lg:col-span-3'>
+              <div className='col-span-6 sm:col-span-5 lg:col-span-2'>
                 <div className="flex items-center justify-center w-min">
                   <div className="flex">
                     <Button 
@@ -137,10 +146,16 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, unit_price, pr
                   </div>
                 </div>
               </div>
-              <div className='col-span-3 lg:col-span-2'>
+              <div className='col-span-1 justify-center items-center sm:invisible'>
+                <HiOutlineTrash 
+                  className='text-gray-500 cursor-pointer text-xl mt-[6px] sm:mt-0' 
+                  onClick={deleteItem}
+                />
+              </div>
+              <div className='hidden sm:block sm:col-span-2 lg:col-span-2'>
                 <p>{ currencyFormat(+sub_total) }</p>
-                <FaTrashAlt 
-                  className='text-gray-500 cursor-pointer' 
+                <HiOutlineTrash 
+                  className='text-gray-500 cursor-pointer text-xl mt-[6px] sm:mt-0' 
                   onClick={deleteItem}
                 />
               </div>
