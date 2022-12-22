@@ -28,4 +28,31 @@
     .scrollbar::-webkit-scrollbar-thumb:hover {
         background: #002540;
     }
+
+    .no-spinner {
+        -moz-appearance: textfield;
+    }
+  
+    .no-spinner::-webkit-outer-spin-button,
+    .no-spinner::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+    }
+
+    .mySwiper2 {
+        width: 100%;
+    }
+      
+    .mySwiper {
+        box-sizing: border-box;
+        padding: 10px 0;
+    }
+      
+    .mySwiper .swiper-slide {
+        opacity: 0.4;
+    }
+      
+    .mySwiper .swiper-slide-thumb-active {
+        opacity: 1;
+    }
 }

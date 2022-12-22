@@ -12,6 +12,7 @@ import { Shop } from './pages/shop/Shop';
 import { Content, Navbar } from './layouts';
 import { Cart } from './pages/customer/cart/Cart';
 import { OrderSuccess } from './pages/customer/success/OrderSuccess';
+import { Product } from './pages/prouct/Product';
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path='/' element={<Landing />} />
           <Route path='/logout' element={<Logout />} />
           <Route path='/shop' element={<Shop />} />
+          <Route path='/product/:slug' element={<Product />} />
 
           {/* Protect these Admin routes  */}
           <Route element={<RequireAuth allowedRoles={[roles.ADMIN]}/>}>

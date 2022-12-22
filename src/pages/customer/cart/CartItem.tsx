@@ -89,10 +89,7 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, unit_price, pr
       {isLoading ? <LoaderBackdrop /> : ''}
       <div className='w-[100%] h-auto pr-4 mt-4 mb-4'>
         <div className="grid grid-cols-12">
-          <Link 
-            className='ml-5 flex justify-center items-center gap-2 col-span-3 sm:col-span-2'
-            to={`/product/${slug}`}
-          >
+          <div className='ml-2 sm:ml-0 flex justify-center items-center gap-2 col-span-3 sm:col-span-2'>
             <Input 
               type="checkbox" 
               id={slug} 
@@ -101,13 +98,17 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, unit_price, pr
               checked={isCheck}
               onChange={(e) => handleSelectItem(e)}
             />
-            <img
-              className="h-24 w-[64px] lg:h-28 lg:w-20 object-cover"
-              src={image}
-              alt="Product image"
-            />
-          </Link>
-          <div className="flex items-start h-auto flex-col ml-5 col-span-9 sm:col-span-10">
+            <Link 
+              to={`/product/${slug}`}
+            >
+              <img
+                className="h-24 w-[64px] lg:h-28 lg:w-20 object-cover"
+                src={image}
+                alt="Product image"
+              />
+            </Link>
+          </div>
+          <div className="flex items-start h-auto flex-col ml-2 col-span-9 sm:col-span-10">
             <Link 
               className='text-md' 
               to={`/product/${slug}`}
