@@ -9,6 +9,7 @@ import { Button, Input, LoaderBackdrop } from '../../../components/common';
 import { cartAction } from '../../../redux/features/cart/cartSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, unit_price, price, discount, qty, sub_total, selected, image }) => {  
   const dispatch = useDispatch();
@@ -101,7 +102,7 @@ export const CartItem: React.FC<Cart> = ({ id, name, slug, brand, unit_price, pr
             <Link 
               to={`/product/${slug}`}
             >
-              <img
+              <LazyLoadImage
                 className="h-24 w-[64px] lg:h-28 lg:w-20 object-cover"
                 src={image}
                 alt="Product image"

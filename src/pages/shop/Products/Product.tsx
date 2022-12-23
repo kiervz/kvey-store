@@ -6,6 +6,7 @@ import { currencyFormat, notifyUser } from '../../../utility';
 import { IProduct } from './types';
 import { cartAction } from '../../../redux/features/cart/cartSlice';
 import { useDispatch } from 'react-redux';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const Product: React.FC<IProduct> = ({ id, name, slug, unit_price, actual_price, discount, productImages, other }) => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export const Product: React.FC<IProduct> = ({ id, name, slug, unit_price, actual
     <div className="flex flex-col">
       <Link to={`/product/${slug}`} className='group'>
         <div className="w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-          <img 
+          <LazyLoadImage 
             src={productImages[0].url} 
             alt="alt image" 
             className="h-full w-full object-cover object-center aspect-square" 
