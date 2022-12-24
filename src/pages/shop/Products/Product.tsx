@@ -45,12 +45,12 @@ export const Product: React.FC<IProduct> = ({ id, name, slug, unit_price, actual
             <span className="absolute"></span>
             {name}
           </h3>
-          <div className='flex justify-between gap-2 items-center'>
+          <div className='flex justify-between gap-2 items-end'>
             <p className="mt-1 text-sm text-gray-900">{currencyFormat(actual_price)}</p>
             { discount > 0 &&
-            <div className='flex items-center gap-2'>
-              <p className="text-sm text-gray-600 line-through">{currencyFormat(unit_price)}</p>
-              <p className="text-sm text-gray-900">{`-${currencyFormat(discount, '', 0)}%`}</p>
+            <div className='flex items-end gap-2'>
+              <p className="text-xs text-gray-600 line-through">{currencyFormat(unit_price)}</p>
+              <p className="text-xs text-gray-900">{`-${currencyFormat(discount, '', 0)}%`}</p>
             </div> }
           </div>
         </div>

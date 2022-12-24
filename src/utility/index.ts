@@ -1,2 +1,2 @@
-export * from './DisplayHelpler';
+export * from './DisplayHelper';
 export * from './MessageHelper';

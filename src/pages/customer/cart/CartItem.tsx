@@ -3,7 +3,7 @@ import axios from '../../../config/AxiosClient';
 
 import { Cart } from '../../../redux/features/cart/types';
 import { HiOutlineTrash } from 'react-icons/hi';
-import { currencyFormat } from '../../../utility/DisplayHelpler';
+import { currencyFormat } from '../../../utility/DisplayHelper';
 import { Button, Input, LoaderBackdrop } from '../../../components/common';
 
 import { cartAction } from '../../../redux/features/cart/cartSlice';
