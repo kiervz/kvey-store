@@ -78,6 +78,7 @@ export const Shop = () => {
 
   const handleSelectedSort = (selected: string) => {
     setSort(selected);
+    setCurrentPage(1);
   };
 
   useEffect(() => {

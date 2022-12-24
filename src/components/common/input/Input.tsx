@@ -1,7 +1,4 @@
 import React from 'react';
-interface Props<T> {
-  value: T;
-}
 
 interface IInput {
   name?: string | undefined;
