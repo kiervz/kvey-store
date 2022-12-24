@@ -27,22 +27,27 @@ export const Navbar = () => {
           </li>
         </ul>
         <ul className='flex justify-between gap-4 items-center'>
-          <li className='hidden sm:block text-xl p-2 text-black cursor-pointer hover:bg-gray-200 hover:rounded-full hover:p-2 hover:text-slate-900 relative'>
-            <HiOutlineHeart size={24} />
-            <div className='bg-blue-500 rounded-full absolute -top-1 -right-1 text-sm w-5 flex justify-center items-center text-white'>
-              <p className='mx-auto'>0</p>
-            </div>
-          </li>
-          <li className='text-xl p-2 text-black cursor-pointer hover:bg-gray-200 hover:rounded-full hover:p-2 hover:text-slate-900 relative'>
-            <Link 
-              to='/cart'
-            >
+          
+          <Link 
+            to='/wish-list'
+          >
+            <li className='hidden sm:block text-xl p-2 text-black cursor-pointer hover:bg-gray-200 hover:rounded-full hover:p-2 hover:text-slate-900 relative'>
+              <HiOutlineHeart size={24} />
+              <div className='bg-blue-500 rounded-full absolute -top-1 -right-1 text-sm w-5 flex justify-center items-center text-white'>
+                <p className='mx-auto'>0</p>
+              </div>
+            </li>
+          </Link>
+          <Link 
+            to='/cart'
+          >
+            <li className='text-xl p-2 text-black cursor-pointer hover:bg-gray-200 hover:rounded-full hover:p-2 hover:text-slate-900 relative'>
               <HiOutlineShoppingBag size={24} />
               <div className='bg-blue-500 rounded-full absolute -top-1 -right-1 text-sm w-5 flex justify-center items-center text-white'>
                 <p className='mx-auto'>{ cartSlice.totalCartItems }</p>
               </div>
-            </Link>
-          </li>
+            </li>
+          </Link>
           <li className='cursor-pointer relative'>
             <img 
               className='w-8 h-8 object-cover rounded-full border-2 focus:border-slate-900 '

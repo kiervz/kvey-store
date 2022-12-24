@@ -9,6 +9,7 @@ import { SortBy } from './SortBy';
 import { IProduct } from './products/types';
 import { Button } from '../../components/common';
 import { removeDuplicatesById } from '../../utility';
+import { PAGINATE_PRODUCTS } from '../../constants';
 
 export interface metaProps {
   page: number;
@@ -24,17 +25,21 @@ export const Shop = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [fromLoadMore, setFromLoadMore] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoadingButton, setIsLoadingButton] = useState<boolean>(false);
 
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
   const [priceRange, setPriceRange] = useState<number[]>([0, 10000]);
-  
+  const [sort, setSort] = useState<string>('latest-arrival');
+
   const [selectedBrands, setSelectedBrands] = useState<number[]>([]);
   const [search, setSearch] = useState<string>('');
 
   const handleFetchProducts = async () => { 
-    setIsLoading(true);
+    if (!fromLoadMore) {
+      setIsLoading(true);
+    }
     try {
-      const { data } = await axios.get(`/api/v1/shop?page=${currentPage}&q=${search}&brand=${selectedBrands}&category=${selectedCategories}&price[0]=${priceRange[0]}&price[1]=${priceRange[1]}`);
+      const { data } = await axios.get(`/api/v1/shop?page=${currentPage}&q=${search}&brand=${selectedBrands}&category=${selectedCategories}&price[0]=${priceRange[0]}&price[1]=${priceRange[1]}&sort=${sort}&paginate=${PAGINATE_PRODUCTS}`);
 
       if (fromLoadMore) {
         setProducts(prev => [...prev, ...data.response.data]);
@@ -49,6 +54,7 @@ export const Shop = () => {
     } finally {
       setFromLoadMore(false);
       setIsLoading(false);
+      setIsLoadingButton(false);
     }
   };
 
@@ -66,12 +72,17 @@ export const Shop = () => {
     if (Number(meta?.page) < Number(meta?.totalPages)) {
       setCurrentPage(prev => prev + 1);
       setFromLoadMore(true);
+      setIsLoadingButton(true);
     }
+  };
+
+  const handleSelectedSort = (selected: string) => {
+    setSort(selected);
   };
 
   useEffect(() => {
     handleFetchProducts();
-  }, [selectedCategories, priceRange, currentPage]);
+  }, [selectedCategories, priceRange, sort, currentPage]);
 
   return (
     <div className='container mx-auto mt-4'>
@@ -94,7 +105,9 @@ export const Shop = () => {
             priceCap={200}
             handlePriceRange={handlePriceRange}
           />
-          <SortBy />
+          <SortBy 
+            onSelectedRadio={handleSelectedSort}
+          />
         </div>
         <div className='p-4 col-span-3 order-1 md:order-2 h-auto'>
           <div className='flex justify-start'>
@@ -103,22 +116,24 @@ export const Shop = () => {
             </p>
           </div>
           {/* <Banner /> */}
-          <Products
-            products={removeDuplicatesById(products)}
-          />
-          <div className='flex justify-center pt-8'>
-            { !isLoading && <>
-              { currentPage !== meta?.totalPages 
+          { isLoading ? 
+            'Loading...' 
+            : 
+            <>
+              <Products
+                products={removeDuplicatesById(products)}
+              />
+              <div className='flex justify-center pt-8'>
+                { currentPage !== meta?.totalPages 
                 && 
                 <Button 
                   className='content-between bg-transparent hover:bg-[#212529] text-[#212529] font-semibold hover:text-white py-2 px-4 border border-[#212529] hover:border-transparent rounded disabled:bg-[#999FA4] disabled:text-[#F5F5F5] disabled:border-[#999FA4] disabled:cursor-not-allowed'
-                  btnText={isLoading ? 'Loading...' : 'Load More'}
-                  isDisabled={isLoading}
+                  btnText={isLoadingButton ? 'Loading...' : 'Load More'}
+                  isDisabled={isLoadingButton}
                   onClick={handleLoadMore}
                 /> }
+              </div>
             </> }
-            
-          </div>
         </div>
       </div>
     </div>
