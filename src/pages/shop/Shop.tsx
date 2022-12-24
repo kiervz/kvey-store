@@ -12,13 +12,13 @@ export const Shop = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
 
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
+  const [priceRange, setPriceRange] = useState<number[]>([1000, 10000]);
   const [selectedBrands, setSelectedBrands] = useState<number[]>([]);
-  const [priceRange, setPriceRange] = useState<number[]>([]);
   const [search, setSearch] = useState<string>('');
 
-  const handleFetchProducts = async () => {
+  const handleFetchProducts = async () => { 
     try {
-      const { data } = await axios.get(`/api/v1/shop?q=${search}&brand=${selectedBrands}&category=${selectedCategories}&prices=${priceRange}`);
+      const { data } = await axios.get(`/api/v1/shop?q=${search}&brand=${selectedBrands}&category=${selectedCategories}&price[0]=${priceRange[0]}&price[1]=${priceRange[1]}`);
 
       setProducts(data.response.data);
     } catch(err: any) {
@@ -31,9 +31,13 @@ export const Shop = () => {
     setSelectedCategories([...categories]);
   };
 
+  const handlePriceRange = (priceRange: number[]) => {
+    setPriceRange([...priceRange]);
+  };
+
   useEffect(() => {
     handleFetchProducts();
-  }, [selectedCategories]);
+  }, [selectedCategories, priceRange]);
 
   return (
     <div className='container mx-auto mt-4'>
@@ -54,6 +58,7 @@ export const Shop = () => {
             max={30000}
             step={100}
             priceCap={200}
+            handlePriceRange={handlePriceRange}
           />
           <SortBy />
         </div>

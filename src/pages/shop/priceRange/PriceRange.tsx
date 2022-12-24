@@ -1,12 +1,22 @@
-import { isInteger } from 'formik';
 import React, { useState, useEffect, useRef } from 'react';
 import { Input } from '../../../components/common';
 import { PriceRange as PriceRangeProps } from './types';
 
-export const PriceRange: React.FC<PriceRangeProps> = ({ initalMin, initalMax, min, max, step, priceCap }) => {
+export const PriceRange: React.FC<PriceRangeProps> = ({ 
+  initalMin, 
+  initalMax, 
+  min, 
+  max, 
+  step, 
+  priceCap,
+  handlePriceRange
+}) => {
   const progressRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+
   const [minValue, setMinValue] = useState<number>(initalMin);
   const [maxValue, setMaxValue] = useState<number>(initalMax);
+
+  const [isReleased, setIsReleased] = useState<boolean>(false);
 
   const handleMin = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (((maxValue - minValue) >= priceCap) && maxValue <= max) {
@@ -37,34 +47,43 @@ export const PriceRange: React.FC<PriceRangeProps> = ({ initalMin, initalMax, mi
     progressRef.current.style.right = step - (maxValue / max) * step + '%';
   }, [minValue, maxValue]);
 
+  useEffect(() => {
+    if (isReleased) {
+      handlePriceRange([minValue, maxValue]);
+    }
+    setIsReleased(false);
+  }, [isReleased]);
 
   return (
     <div className='mt-4'>
       <h3 className='bg-[#212529] text-white my-1 py-1 px-2 text-sm font-semibold uppercase sm:my-1 sm:py-2 sm:px-4 rounded-md'>Price Range</h3>
       <div className='mt-4'>
         <div className='slider relative h-1 rounded-md bg-gray-300'>
-          <div className='progress absolute h-1 bg-blue-500 rounded' ref={progressRef}>
-
+          <div 
+            className='progress absolute h-1 bg-blue-500 rounded' 
+            ref={progressRef}>
           </div>
         </div>
         <div className='range-input relative'>
-          <input 
+          <Input 
             type='range'
             value={minValue}
             onChange={handleMin}
+            onMouseUp={() => setIsReleased(true)}
             min={min}
             step={step}
             max={max}
-            className='range-min absolute w-full -top-1 h-1 bg-transparent appearance-none pointer-events-none cursor-grab active:cursor-grabbing	'
+            className='range-min absolute w-full -top-1 h-1 bg-transparent appearance-none pointer-events-none cursor-grab active:cursor-grabbing'
           />
-          <input 
+          <Input 
             type='range'
             value={maxValue}
             onChange={handleMax}
+            onMouseUp={() => setIsReleased(true)}
             min={min}
             step={step}
             max={max}
-            className='range-min absolute w-full -top-1 h-1 bg-transparent appearance-none pointer-events-none cursor-grab active:cursor-grabbing	'
+            className='range-min absolute w-full -top-1 h-1 bg-transparent appearance-none pointer-events-none cursor-grab active:cursor-grabbing'
           />
         </div>
       </div>

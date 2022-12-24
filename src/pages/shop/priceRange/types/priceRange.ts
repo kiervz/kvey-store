@@ -5,4 +5,5 @@ export interface PriceRange {
   max: number;
   step: number;
   priceCap: number;
+  handlePriceRange: (priceRange: number[]) => void;
 }

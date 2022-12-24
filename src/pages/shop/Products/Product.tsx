@@ -29,7 +29,7 @@ export const Product: React.FC<IProduct> = ({ id, name, slug, unit_price, actual
       }
     } finally { setIsLoading(false); }
   };
-
+  
   return (
     <div className="flex flex-col">
       <Link to={`/product/${slug}`} className='group'>

@@ -1,4 +1,7 @@
 import React from 'react';
+interface Props<T> {
+  value: T;
+}
 
 interface IInput {
   name?: string | undefined;
@@ -17,6 +20,7 @@ interface IInput {
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
   onKeyPress?: React.KeyboardEventHandler<HTMLInputElement>;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  onMouseUp?: React.MouseEventHandler<HTMLInputElement> | undefined;
 }
 
 export const Input: React.FC<IInput> = ({ 
@@ -35,7 +39,8 @@ export const Input: React.FC<IInput> = ({
   pattern, 
   onChange,
   onKeyPress,
-  onBlur
+  onBlur,
+  onMouseUp
 }) => {
   return (
     <input
@@ -55,6 +60,7 @@ export const Input: React.FC<IInput> = ({
       onChange={onChange}
       onKeyPress={onKeyPress}
       onBlur={onBlur}
+      onMouseUp={onMouseUp}
     />
   );
 };
