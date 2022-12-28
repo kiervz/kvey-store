@@ -32,3 +32,5 @@ export const AuthGoogleCallback = () => {
   
   return null;
 };
+
+export default AuthGoogleCallback;

@@ -32,3 +32,5 @@ export const AuthGithubCallback = () => {
   
   return null;
 };
+
+export default AuthGithubCallback;

@@ -16,11 +16,11 @@ const persistor = persistStore(store);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
-    <React.StrictMode>
-      <PersistGate persistor={persistor}>
-        <App />
-        <ToastContainer />
-      </PersistGate>
-    </React.StrictMode>
+    {/* <React.StrictMode> */}
+    <PersistGate persistor={persistor}>
+      <App />
+      <ToastContainer />
+    </PersistGate>
+    {/* </React.StrictMode> */}
   </Provider>
 );

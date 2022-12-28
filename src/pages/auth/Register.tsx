@@ -142,3 +142,5 @@ export const Register = () => {
     </section>
   );
 };
+
+export default Register;

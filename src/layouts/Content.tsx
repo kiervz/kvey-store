@@ -11,3 +11,5 @@ export const Content:React.FC<Props> = ({ children }) => {
     </div>
   );
 };
+
+export default Content;
