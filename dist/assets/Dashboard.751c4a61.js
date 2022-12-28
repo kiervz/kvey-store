@@ -1,0 +1,1 @@
+import{g as s,a as e,j as t}from"./index.3102e1d9.js";const o=()=>{const a=s(r=>r.user.user);return e("div",{children:[t("p",{children:"Dashboard"}),e("p",{children:["Name: ",a.data.name]}),e("p",{children:["Role: ",a.data.roles]})]})};export{o as default};
