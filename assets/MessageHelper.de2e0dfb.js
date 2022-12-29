@@ -1,1 +1,0 @@
-import{Q as i}from"./index.0198934a.js";const f=(r,o,t="light",s="top-center",n=5e3,p=!1)=>{var e;return(e=i)==null?void 0:e[r](o,{position:s,autoClose:n,hideProgressBar:p,theme:t,pauseOnHover:!0,progress:void 0})};export{f as n};
