@@ -3,7 +3,7 @@ import axios from '../../../config/AxiosClient';
 import { Link } from 'react-router-dom';
 import { Button } from '../../../components/common';
 import { currencyFormat, notifyUser } from '../../../utility';
-import { IProduct } from './types';
+import { IProduct } from './types/product';
 import { cartAction } from '../../../redux/features/cart/cartSlice';
 import { useDispatch } from 'react-redux';
 import { LazyLoadImage } from 'react-lazy-load-image-component';

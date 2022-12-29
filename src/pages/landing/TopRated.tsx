@@ -3,7 +3,7 @@ import axios from '../../config/AxiosClient';
 
 import { Link } from 'react-router-dom';
 import { currencyFormat } from '../../utility';
-import { IProduct } from '../shop/products/types';
+import { IProduct } from '../shop/products/types/product';
 
 export const TopRated = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
