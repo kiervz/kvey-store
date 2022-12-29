@@ -17,7 +17,7 @@ const Content = React.lazy(() => import('./layouts/Content'));
 const Navbar = React.lazy(() => import('./layouts/Navbar'));
 const Cart = React.lazy(() => import('./pages/customer/cart/Cart'));
 const OrderSuccess = React.lazy(() => import('./pages/customer/success/OrderSuccess'));
-const Product = React.lazy(() => import('./pages/prouct/Product'));
+const Product = React.lazy(() => import('./pages/product/Product'));
 
 const App = () => {
   return (
