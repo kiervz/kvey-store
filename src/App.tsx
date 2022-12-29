@@ -21,7 +21,7 @@ const Product = React.lazy(() => import('./pages/product/Product'));
 
 const App = () => {
   return (
-    <BrowserRouter basename='/kvey-store'>
+    <BrowserRouter>
       <Suspense fallback={null}>
         <Navbar />
         <Content>
