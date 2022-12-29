@@ -2,12 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/kvey-store/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kvey Store</title>
-    <script type="module" crossorigin src="/kvey-store/assets/index.f58e1107.js"></script>
-    <link rel="stylesheet" href="/kvey-store/assets/index.6f970791.css">
+    <script type="module" crossorigin src="/assets/index.0198934a.js"></script>
+    <link rel="stylesheet" href="/assets/index.6f970791.css">
   </head>
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) { 
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
   <body class="scrollbar bg-[#F9FAFB]">
     <div id="backdrop-root"></div>
     <div id="overlay-root"></div>
