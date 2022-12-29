@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
     "target": "es2016",
     "useDefineForClassFields": true,
     "lib": ["es6", "dom", "es2017"],
