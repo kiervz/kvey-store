@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import image1 from '../../assets/images/landing/image1.jpg';
 import image2 from '../../assets/images/landing/image2.jpg';
@@ -91,12 +92,12 @@ export const HeroOne = () => {
                 </div>
               </div>
 
-              <a
-                href="#"
+              <Link
+                to="/shop"
                 className="inline-block rounded-md border border-transparent bg-blue-500 py-3 px-8 text-center font-medium text-white hover:bg-blue-700"
               >
                 Shopping now!
-              </a>
+              </Link>
             </div>
           </div>
         </div>

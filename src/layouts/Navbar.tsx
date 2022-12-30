@@ -19,7 +19,7 @@ export const Navbar = () => {
           <Link to='/'>Kvey Store</Link>
         </p>
         <ul className='flex justify-between gap-4 p-2'>
-          <li className='hidden sm:block'>
+          <li className='block'>
             <Link to='/shop'>Shop</Link>
           </li>
           <li className='hidden sm:block'>

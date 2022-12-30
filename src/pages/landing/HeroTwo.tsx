@@ -1,5 +1,6 @@
 import React from 'react';
 import { HiArrowRight } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 
 import image1 from '../../assets/images/landing/image1.jpg';
 import image2 from '../../assets/images/landing/image2.jpg';
@@ -72,12 +73,12 @@ export const HeroTwo = () => {
             <h1 className="font text-3xl font-bold tracking-tight text-white sm:text-5xl">
             Limited time only: 50% off select products
             </h1>
-            <a
-              href="#"
+            <Link
+              to="/shop"
               className="text-white text-xl flex justify-between items-center mt-20 w-max"
             > Shop the sale 
               <HiArrowRight className='ml-2' />
-            </a>
+            </Link>
             <div className='mt-20 grid grid-cols-2 gap-8'>
               <div className='grid-cols-1'>
                 <p className='text-3xl sm:text-5xl text-white'>
