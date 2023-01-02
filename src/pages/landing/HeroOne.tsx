@@ -21,7 +21,6 @@ export const HeroOne = () => {
             <p className="mt-4 text-md sm:text-xl text-gray-500">
             Shop a wide selection of high-quality products at competitive prices. 
             Our easy-to-use website makes it simple to find exactly what you&lsquo;re looking for.
-            Secure payment options and hassle-free returns make it even easier. 
             </p>
           </div>
           <div>
@@ -96,7 +95,7 @@ export const HeroOne = () => {
                 to="/shop"
                 className="inline-block rounded-md border border-transparent bg-blue-500 py-3 px-8 text-center font-medium text-white hover:bg-blue-700"
               >
-                Shopping now!
+                Shop Now
               </Link>
             </div>
           </div>
