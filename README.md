@@ -10,7 +10,7 @@ Check the demo hosted on Vercel https://kvey-store.vercel.app.
 
 First clone this repository.
 ```bash
-$ git clone https://github.com/kiervz/kvey-store.git
+$ git clone https://github.com/kiervz/ecommerce-react-typescript.git
 ```
 
 Change Directory into this project.
